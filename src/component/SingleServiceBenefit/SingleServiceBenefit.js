@@ -7,8 +7,10 @@ const SingleServiceBenefit = ({ item }) => {
                 <div className="img-wrap">
                     <img alt="" src={`image/${item.image} `} />
                 </div>
-                <h5>{item.name}</h5>
-                <p><Link to="/bonus" style={{ display: item.name === "Bonus & Refferal" ? "" : "none" }}>Click Here</Link>{item.description}</p>
+                <div>
+                    <h5>{item.name}</h5>
+                    <p><Link to="/bonus" style={{ display: item.name === "Bonus & Refferal" ? "" : "none" }}>Click Here</Link>{item.description}</p>
+                </div>
             </div>
         </>
     )

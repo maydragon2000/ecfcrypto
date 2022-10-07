@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { decode } from "base-64";
 import * as Yup from "yup";
 import Error from "../../../component/Error/Error"
 import { useDispatch, useSelector } from "react-redux";
-import { saveRegisterData, setResponseStatus } from "../../../store/actions/user";
+import { setResponseStatus } from "../../../store/actions/user";
+import { saveRegisterData } from "../../../store/actions/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./style.css"
 const Register = (props) => {
-    const { responseStatus } = useSelector((state) => state.user);
+    const { responseStatus, styleMode } = useSelector((state) => state.user);
 
     const [passwordShow, setPasswordShow] = useState(false);
     const [passwordConfirmShow, setPasswordConfirmWrap] = useState(false);
     const [agreeChecked, setAgreeChecked] = useState(false);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
     const initialValues = {
         userName: "",
+        email:"",
         password: "",
     };
     const validationSchema = Yup.object({
         userName: Yup.string().required("userName is Required"),
+        email: Yup.string().email("Invalid email address").required("Required"),
         password: Yup.string().min(5).max(255).required("Password is Required"),
         passwordConfirm: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').min(5).max(255).required("Coinfirm Password is Required")
     });
@@ -41,8 +45,10 @@ const Register = (props) => {
     }, [])
     const onSubmit = (values) => {
         dispatch(saveRegisterData(values));
-        navigate("/RecoveryPhrase")
+        localStorage.setItem("registerData", JSON.stringify(values))
+        navigate("/EmailVerifycation");
     };
+
     return (
         <Formik
             initialValues={initialValues}
@@ -53,11 +59,11 @@ const Register = (props) => {
                 return (
                     <>
                         <ToastContainer limit={3} autoClose={5000} hideProgressBar={true} theme="colored" />
-                        <div className="register">
+                        <div className={`register light_register`}>
                             <div className="logo">
                                 <Link to="/">
-                                    <img alt="" src="image/header-logo.png" />
-                                    <p>Crypto Trustable</p>
+                                    <img alt="" src="image/logo.png" />
+                                    <p>ECF Crypto</p>
                                 </Link>
                             </div>
                             <div className="register-inner">
@@ -70,6 +76,14 @@ const Register = (props) => {
                                             placeholder="username"
                                         />
                                         <ErrorMessage name="userName" component={Error} />
+                                    </div>
+                                    <div className="userName-wrap">
+                                        <Field
+                                            name="email"
+                                            type="email"
+                                            placeholder="email"
+                                        />
+                                        <ErrorMessage name="email" component={Error} />
                                     </div>
                                     <div className="password-wrap">
                                         <Field

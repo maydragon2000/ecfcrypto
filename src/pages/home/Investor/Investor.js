@@ -8,12 +8,10 @@ const Investor = () => {
                     <p>Backed By Investors</p>
                 </div>
                 <div className="investor-wrap">
-                    <img alt="" src="image/investor1.svg" />
-                    <img alt="" src="image/investor2.svg" />
-                    <img alt="" src="image/investor3.svg" />
-                    <img alt="" src="image/investor4.svg" />
-                    <img alt="" src="image/investor5.svg" />
-                    <img alt="" src="image/investor6.svg" />
+                    <div className="logo1"><img alt="" src="/image/efccrypto/ecoBank.png" /></div>
+                    <div><img className="logo4" alt="" src="/image/efccrypto/EXIM.png" /></div>
+                    <div><img className="logo3" alt="" src="/image/efccrypto/EXIMCredit.png" /></div>
+                    <div><img className="logo6" alt="" src="/image/efccrypto/nbd.png" /></div>
                 </div>
             </div>
         </>

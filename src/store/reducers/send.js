@@ -1,12 +1,12 @@
-import { SET_WATCHLIST_TOKENLIST } from "../actions/watchlist";
+import { SET_SEND_STATUS } from "../actions/send";
 const initialState = {
-    tokenlist: undefined
+    status: "No_Transactioin",
 }
-export default function watchlist(state = initialState, action) {
+export default function send(state = initialState, action) {
     switch (action.type) {
-        case SET_WATCHLIST_TOKENLIST:
+        case SET_SEND_STATUS:
             return {
-                tokenlist: action.tokenlist
+                status: action.status
             }
         default:
             return state;

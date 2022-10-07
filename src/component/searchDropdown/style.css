@@ -1,8 +1,8 @@
 .selectinput {
     position: absolute !important;
-    background-color: #080808;
+    background-color: white;
     margin-top: 30px;
     border-radius: 5px;
     padding: 20px;
-    color: white;
+    border: solid 1px black;
 }

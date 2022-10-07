@@ -25,7 +25,8 @@
 }
 
 .recovery-phrase .logo a img {
-    width: 40px;
+    width: 60px;
+    height: 40px;
     margin-right: 10px;
 }
 
@@ -122,4 +123,80 @@
 
 .recovery-phrase-inner .recovery-phrase-button:hover {
     opacity: 1;
+}
+
+.light_recovery-phrase{
+    background-color: white;
+}
+
+.light_recovery-phrase .recovery-phrase-inner h1{
+    color: #2B3144;
+}
+
+.light_recovery-phrase .sub-title p{
+    color: #2B3144;
+}
+
+.light_recovery-phrase .warning{
+    color: #2B3144;
+}
+
+.light_recovery-phrase .warning label{
+    color: #e3e348;
+}
+
+.light_recovery-phrase .recovery-phrase-inner .phrase-list div{
+    background-color: #E2F2FF;
+}
+
+.light_recovery-phrase .recovery-phrase-inner .phrase-list div p{
+    color: #2B3144;
+}
+
+.light_recovery-phrase .logo a p{
+    color: #2B3144;
+}
+
+
+
+
+@media (max-width:1100px) {
+    .recovery-phrase-inner {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width:500px) {
+    .recovery-phrase-inner h1 {
+        font-size: 28px;
+    }
+
+    .recovery-phrase .sub-title p {
+        font-size: 14px;
+    }
+
+    .recovery-phrase-inner .phrase-list div {
+        width: 43%;
+    }
+
+    .warning {
+        font-size: 16px;
+    }
+}
+
+@media (max-width:400px) {
+    .recovery-phrase .logo {
+        left: 20px;
+    }
+
+    .recovery-phrase-inner h1 {
+        font-size: 23px;
+    }
+
+    .recovery-phrase .sub-title p {
+        font-size: 12px;
+    }
+    .light_recovery-phrase .recovery-phrase-inner .phrase-list div p{
+        font-size: 18px;
+    }
 }

@@ -13,7 +13,7 @@ import { RiFileCopyLine } from "react-icons/ri";
 import TableFilterCategory from "../../component/TableFilterCategory/TableFilterCategory";
 import MarketTable from "../../component/MarketTable/MarketTable";
 import SelectCoin from "../../component/SelectCoin/SelectCoin";
-import { attemptGetGasfee, attemptSendCrypto } from "../../store/thunks/send";
+import SendConfirmModal from "../../component/SendConfirmModal/SendCofirmModal";
 
 import 'react-tabs/style/react-tabs.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,6 +22,8 @@ import "./style.css";
 const CoinDetail = () => {
     const { tokenSymbol } = useParams();
     const { walletAddress } = useSelector(state => state.wallet);
+    const { styleMode } = useSelector(state => state.user);
+
     const [marketData, setMarketData] = useState();
     const [coinList, setCoinList] = useState([{
         name: {
@@ -41,35 +43,11 @@ const CoinDetail = () => {
     },
     {
         name: {
-            image: "xrp",
-            fullName: "XRP",
-            logogram: "XRP"
+            image: "tether",
+            fullName: "Tether",
+            logogram: "USDT"
         },
-        id: 52,
-    },
-    {
-        name: {
-            image: "litecoin",
-            fullName: "Litecoin",
-            logogram: "LTC"
-        },
-        id: 2,
-    },
-    {
-        name: {
-            image: "polygon",
-            fullName: "Polygon",
-            logogram: "MATIC"
-        },
-        id: 3890,
-    },
-    {
-        name: {
-            image: "solana",
-            fullName: "Solana",
-            logogram: "SOL"
-        },
-        id: 5426,
+        id: 825,
     },
     {
         name: {
@@ -81,28 +59,94 @@ const CoinDetail = () => {
     },
     {
         name: {
-            image: "cardano",
-            fullName: "Cardano",
-            logogram: "ADA"
+            image: "SHIB",
+            fullName: "Shiba Inu",
+            logogram: "SHIB"
         },
-        id: 2010,
+        id: 5994,
     },
     {
         name: {
-            image: "tether",
-            fullName: "Tether",
-            logogram: "USDT"
+            image: "polygon",
+            fullName: "Dai",
+            logogram: "DAI"
         },
-        id: 825,
+        id: 4943,
+    },
+    
+    {
+        name: {
+            image: "Wrapped Bitcoin",
+            fullName: "Wrapped Bitcoin",
+            logogram: "WBTC"
+        },
+        id: 3717,
     },
     {
         name: {
-            image: "avalanche",
-            fullName: "Avalanche",
-            logogram: "AVAX"
+            image: "Uniswap",
+            fullName: "Uniswap",
+            logogram: "UNI"
         },
-        id: 5805,
-    },]);
+        id: 7083,
+    },
+    {
+        name: {
+            image: "Cronos",
+            fullName: "Cronos",
+            logogram: "CRO"
+        },
+        id: 3635,
+    },
+    {
+        name: {
+            image: "Chainlink",
+            fullName: "Chainlink",
+            logogram: "LINK"
+        },
+        id: 1975,
+    },
+    {
+        name: {
+            image: "ApeCoin",
+            fullName: "ApeCoin",
+            logogram: "APE"
+        },
+        id: 18876,
+    },
+    {
+        name: {
+            image: "Chiliz",
+            fullName: "Chiliz",
+            logogram: "CHZ"
+        },
+        id: 4066,
+    },
+    {
+        name: {
+            image: "Decentraland",
+            fullName: "Decentraland",
+            logogram: "MANA"
+        },
+        id: 1966,
+    },
+    {
+        name: {
+            image: "The Sandbox",
+            fullName: "The Sandbox",
+            logogram: "SAND"
+        },
+        id: 6210,
+    },
+    {
+        name: {
+            image: "Quant",
+            fullName: "Quant",
+            logogram: "QNT"
+        },
+        id: 3155,
+    },
+    ]);
     const [singleCoin, setSingleCoin] = useState();
     const [singleCoinHistory, setSingleCoinHistory] = useState();
     const [percent, setPercent] = useState(0);
@@ -110,6 +154,8 @@ const CoinDetail = () => {
     const [selectedSendCoin, setSelectedSendCoin] = useState({ value: 1, label: 'BTC', image: 1 });
     const [sendCoinAmount, setSendCoinAmount] = useState(0);
     const [sendAddress, setSendAddress] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [marketDataCount, setMarketDataCount] = useState(20);
     const dispatch = useDispatch();
 
     const copySuccess = () => toast.success("Copy success");
@@ -120,21 +166,25 @@ const CoinDetail = () => {
     const getSinglecoindata = () => {
         axios.get(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/getcoindetail/${tokenSymbol}`)
             .then((res) => {
+
                 setSingleCoin(res.data.data[tokenSymbol]);
             })
             .catch((res) => {
                 console.log(res, "singleCoinError");
             });
-        axios.get(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/coinHistory/${tokenSymbol}`)
-            .then((res) => {
-                setSingleCoinHistory(res.data.data[tokenSymbol]);
-            })
-            .catch((res) => {
-                console.log(res, "res error");
-            });
+
+        // get singlecoin history
+        setSingleCoinHistory(true)
+        // axios.get(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/coinHistory/${tokenSymbol}`)
+        //     .then((res) => {
+        //         setSingleCoinHistory(res.data.data[tokenSymbol]);
+        //     })
+        //     .catch((res) => {
+        //         console.log(res, "res error");
+        //     });
     };
     const getMainMarketData = () => {
-        axios.get(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/getcoins`)
+        axios.post(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/getcoins`, { marketDataCount })
             .then((res) => {
                 setMarketData(res.data);
             })
@@ -143,12 +193,7 @@ const CoinDetail = () => {
             });
     }
     const sendCoin = () => {
-        console.log(selectedSendCoin, "selectedSendCoin");
-        console.log(sendCoinAmount, "sendCoinAmount");
-        console.log(sendAddress, "sendAddress");
-        const data = { coin: selectedSendCoin.label, amount: sendCoinAmount, address: sendAddress };
-        dispatch(attemptGetGasfee());
-        // dispatch(attemptSendCrypto(data));
+        setShowModal(true);
     }
     useEffect(() => {
         const interval = getMainMarketData();
@@ -161,23 +206,35 @@ const CoinDetail = () => {
     useEffect(() => {
         getSinglecoindata();
     }, [tokenSymbol]);
+
+    //get real low and high price
+    // useEffect(() => {
+    //     if (!!singleCoinHistory && !!singleCoin) {
+    //         const lowPrice = singleCoinHistory.quote.USD.low.toFixed(2);
+    //         const highPrice = singleCoinHistory.quote.USD.high.toFixed(2);
+    //         setPercent((singleCoin.quote.USD.price.toFixed(2) - lowPrice) / (highPrice - lowPrice) * 100);
+    //     }
+    // }, [singleCoinHistory])
+
+    const selectChange = (e) => {
+        setMarketDataCount(e.target.value);
+    }
+    console.log(marketDataCount, "marketdatacount")
+
     useEffect(() => {
-        if (!!singleCoinHistory && !!singleCoin) {
-            const lowPrice = singleCoinHistory.quote.USD.low.toFixed(2);
-            const highPrice = singleCoinHistory.quote.USD.high.toFixed(2);
-            setPercent((singleCoin.quote.USD.price.toFixed(2) - lowPrice) / (highPrice - lowPrice) * 100);
-        }
-    }, [singleCoinHistory])
+        getMainMarketData();
+    }, [marketDataCount])
+
 
     return (
         <>
-            <div className="currencies">
+            <div className={`currencies light_currencies`}>
                 {/* <div className="coin-detail-inner"> */}
                 <div className="left">
                     <div className="market-status">
                         <h5>Market status</h5>
                         {!singleCoin || !singleCoinHistory ? <div>loading</div> : <><div className="d-flex row">
-                            <div className="col-6">
+                            <div className="col-6 market-status_left">
                                 <div className="coin-name">
                                     <img alt="" src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${singleCoin.id}.png `} />
                                     <h5>{singleCoin.name}</h5>
@@ -192,7 +249,7 @@ const CoinDetail = () => {
                                     <p className="watch-number" >On 2,771,773 watchlists</p>
                                 </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-6 market-status_right">
                                 <div className="coin-price">
                                     <div className="first">
                                         <div className="left">
@@ -213,11 +270,19 @@ const CoinDetail = () => {
                                             <option value="month">1 month</option>
                                             <option value="year">1 year</option>
                                         </select>
+
                                     </div>
-                                    <progress id="file" value={percent} max="100"> {percent.toFixed(0)}% </progress>
+                                    {/* show real data */}
+                                    {/* <progress id="file" value={percent} max="100"> {percent.toFixed(0)}% </progress>
                                     <div className="detail-price">
                                         <p className="low-price">Low : ${singleCoinHistory.quote.USD.low.toFixed(2)}</p>
                                         <p className="high-price" >High : ${singleCoinHistory.quote.USD.high.toFixed(2)}</p>
+                                    </div> */}
+                                    {/* show static data */}
+                                    <progress id="file" value={80} max="100"> {100}% </progress>
+                                    <div className="detail-price">
+                                        <p className="low-price">Low : ${20235.62}</p>
+                                        <p className="high-price" >High : ${22235.62}</p>
                                     </div>
                                 </div>
                             </div>
@@ -248,22 +313,24 @@ const CoinDetail = () => {
                     </div>
                     <div className="trade-history-table">
                         <div className="trade-history-table-header">
-                            <h5>Trade History</h5>
-                            <select name="cars" id="24h">
-                                <option value="24h" >24h</option>
-                                <option value="hour">1h</option>
-                                <option value="month">1 month</option>
-                                <option value="year">1 year</option>
+                            <h5>Market Cap</h5>
+                            <select onChange={selectChange} value={marketDataCount}>
+                                <option value="5">Show 5</option>
+                                <option value="10">Show 10</option>
+                                <option value="20" selected>Show 20</option>
+                                <option value="30">Show 30</option>
+                                <option value="40">Show 40</option>
+                                <option value="50">Show 50</option>
                             </select>
                         </div>
-                        <div className="d-flex" style={{ marginBottom: "40px" }}>
+                        {/* <div className="d-flex" style={{ marginBottom: "40px" }}>
                             <TableFilterCategory name="Trade Market" type="normal" />
                             <TableFilterCategory name="Open Order" type="normal" />
                             <TableFilterCategory name="Open History" type="normal" />
                             <TableFilterCategory name="Trade History" type="normal" />
                             <TableFilterCategory name="Portfolio" type="normal" />
                             <TableFilterCategory name="Watchlist" type="normal" />
-                        </div>
+                        </div> */}
                         <MarketTable smallType={false} marketData={marketData} />
                     </div>
                 </div>
@@ -272,8 +339,8 @@ const CoinDetail = () => {
                         <ToastContainer limit={3} autoClose={3000} hideProgressBar={true} theme="colored" />
                         <Tabs default={1}>
                             <TabList>
-                                <Tab>Send Coins</Tab>
-                                <Tab>Receive Coins</Tab>
+                                <Tab>SEND COIN</Tab>
+                                <Tab>RECEIVE COIN</Tab>
                             </TabList>
                             <TabPanel>
                                 <div className="buy-content">
@@ -281,18 +348,17 @@ const CoinDetail = () => {
                                     <div className="coin-selection-wrap ">
                                         <div className="input-wrap">
                                             <p>Address For send</p>
-                                            <input value={sendAddress} onChange={(e) => setSendAddress(e.target.value)} placeholder="Insert the adress" />
+                                            <input value={sendAddress} onChange={(e) => setSendAddress(e.target.value)} placeholder="Insert the address" />
                                         </div>
                                     </div>
 
-                                    <p className="total">Total: (+Fee 0.2) 0.00</p>
-                                    <button className="buy-button" onClick={sendCoin}>Send COIN</button>
+                                    <p className="total"></p>
+                                    <button className="buy-button" onClick={sendCoin}>SEND COIN</button>
                                 </div>
                             </TabPanel>
                             <TabPanel>
                                 <div className="buy-content">
-
-                                    <div className="coin-selection-wrap receive-address ">
+                                    <div className="coin-selection-wrap receive-address">
                                         <div className="input-wrap">
                                             <p>Address For Receive BTC</p>
                                             <div className="address-wrap">
@@ -322,7 +388,7 @@ const CoinDetail = () => {
                                         </div>
                                     </div>
                                     <p className="warning">
-                                        Send only ERC20Tokens (ETH, BNB, ...) to this address.
+                                        Send only ERC20Tokens (ETH, USDT, ...) to this address.
                                     </p>
                                 </div>
                             </TabPanel>
@@ -331,6 +397,7 @@ const CoinDetail = () => {
                 </div>
                 {/* </div> */}
             </div>
+            <SendConfirmModal showModal={showModal} setShowModal={setShowModal} sendAddress={sendAddress} sendAmount={sendCoinAmount} tokenName={selectedSendCoin.label} tokenId={selectedSendCoin.image} />
         </>
     )
 }

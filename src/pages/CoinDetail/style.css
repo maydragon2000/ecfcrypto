@@ -274,7 +274,7 @@
     color: #5367FF;
 }
 
-.react-tabs__tab:focus:after {
+.buy-crypto .react-tabs__tab:focus:after {
     bottom: 0px !important;
     background: #5367FF !important;
     height: 2px !important;
@@ -397,4 +397,168 @@ input[type=radio] {
     color: #9295A6;
     font-size: 14px;
     margin: 20px 0px 5px 0px;
+}
+
+/* light mode */
+
+.light_currencies {
+    background-color: #E6E9F1;
+}
+
+.light_currencies .market-status {
+    background-color: white;
+}
+
+.light_currencies .market-status h5 {
+    color: #2B3144;
+}
+
+.light_currencies .market-status .coin-name p {
+    background-color: #E9EAF0;
+}
+
+.light_currencies .market-status .coin-name .star-wrap {
+    background-color: #E2F2FF;
+}
+
+.light_currencies .market-status .coin-number .rank {
+    background-color: #F0F1F5;
+}
+
+.light_currencies .market-status .coin-price .first h4 {
+    color: #2B3144;
+}
+
+.light_currencies .market-status .coin-price .filter select {
+    background-color: #F0F1F5;
+}
+
+.light_currencies .market-status .detail-item-wrap {
+    background-color: #E2F2FF;
+}
+
+.light_currencies .trade-history-table {
+    background-color: white;
+}
+
+.light_currencies .market-table tbody tr .name h5 {
+    color: #2B3144;
+}
+
+.light_currencies .market-table-normal tbody tr .price,
+.light_currencies .market-table-normal tbody tr .high-price,
+.light_currencies .market-table-normal tbody tr .low-price {
+    color: #2B3144;
+}
+
+.light_currencies .market-table tbody tr:hover {
+    background-color: #FEF2F2;
+}
+
+.light_currencies .market-table tbody tr .name p {
+    background-color: #E9EAF0;
+}
+
+.light_currencies .currency-right {
+    background-color: white;
+}
+
+.light_currencies .coin-selection-wrap {
+    border: 1px solid #CCCED9;
+}
+
+.light_currencies .coin-selection-wrap .input-wrap input {
+    color: #9295A6;
+}
+
+.light_currencies .coin-selection-wrap .input-wrap input::placeholder {
+    color: #9295A6;
+}
+
+.light_currencies .filter-category-coin {
+    color: #6C7080;
+}
+
+@media (max-width:1450px) {
+    .buy-crypto .react-tabs__tab{
+        font-size: 12px;
+    }
+}
+
+@media (max-width:1100px) {
+    .buy-crypto .react-tabs__tab{
+        font-size: 18px;
+    }
+    .currencies {
+        flex-direction: column;
+    }
+
+    .currencies .left {
+        width: 100%;
+    }
+
+    .currencies .currency-right {
+        width: 100%;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width:800px) {
+    .currencies {
+        padding: 80px 10px;
+    }
+
+    .currencies .market-status .detail-item-wrap .title {
+        font-size: 12px;
+    }
+
+    .currencies .market-status .detail-item-wrap .supply {
+        font-size: 12px;
+    }
+}
+
+@media (max-width:500px) {
+    .currencies .market-status .d-flex {
+        flex-direction: column;
+    }
+
+    .currencies .market-status .d-flex div {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .currencies .market-status .detail-items {
+        flex-wrap: wrap;
+    }
+
+    .currencies .market-status .detail-item-wrap {
+        width: 48%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width:400px) {
+    .currencies .market-status {
+        padding: 20px;
+    }
+
+    .currencies .market-status .coin-price .first h4 {
+        font-size: 23px;
+    }
+
+    .currencies .market-status .detail-item-wrap {
+        width: 100%;
+    }
+
+    .currencies .trade-history-table {
+        padding: 20px;
+    }
+
+    .currencies .currency-right {
+        padding: 20px;
+    }
+
+    .buy-crypto .react-tabs__tab {
+        font-size: 16px;
+    }
 }

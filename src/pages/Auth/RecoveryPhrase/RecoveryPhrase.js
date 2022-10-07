@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { attemptRegister } from "../../../store/thunks/auth";
@@ -8,44 +8,53 @@ import wordData from "./words.json";
 import "./style.css";
 
 const RecoveryPhrase = () => {
-    var { registerData } = useSelector((state) => state.user);
+    var { registerData, idFrontImage, idBackImage, realPhoto } = useSelector((state) => state.auth);
+    console.log(registerData, idFrontImage, idBackImage, realPhoto, "result");
     var phrase = [];
     var randomNumber = 0;
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [disable, setDisable] = useState(false);
+
 
     for (let i = 0; i < 12; i++) {
         randomNumber = Math.floor(Math.random() * 1001);
         phrase.push(wordData.words[randomNumber]);
     }
     const onClickContinue = () => {
-        registerData = { ...registerData, recoveryPhrase: phrase };
-        dispatch(attemptRegister(registerData))
+        setDisable(true);
+        const finalRegisterData = { ...registerData, recoveryPhrase: phrase, idFrontImage, idBackImage, realPhoto };
+        console.log(finalRegisterData, "finalRegisterData")
+        dispatch(attemptRegister(finalRegisterData))
             .then((res) => {
+                setDisable(false);
                 dispatch(setResponseStatus("success register"));
                 dispatch(attemptCreateWallet(res.data.name));
-                navigate("/Login")
+                navigate("/Login");
             })
             .catch((error) => {
                 if (error.response) {
                     if (error.response.status === 400) {
-
                         dispatch(setResponseStatus("userName already exited"))
                     }
                     else {
                         dispatch(setResponseStatus("server connection error"));
                     }
-                    navigate("/Register");
                 }
+                setDisable(false);
+                navigate("/Register");
             });
     }
+
+    console.log(registerData, "registerData");
+
     return (
         <>
-            <div className="recovery-phrase">
+            <div className={`recovery-phrase light_recovery-phrase`}>
                 <div className="logo">
                     <Link to="/">
-                        <img alt="" src="image/header-logo.png" />
-                        <p>Crypto Trustable</p>
+                        <img alt="" src="image/logo.png" />
+                        <p>ECF Crypto</p>
                     </Link>
                 </div>
 
@@ -69,7 +78,7 @@ const RecoveryPhrase = () => {
                         Anyone with this phrase can access your account forever.
                     </p>
                     <div className="recovery-phrase-button-wrap">
-                        <button type="submit" onClick={onClickContinue} className="btn recovery-phrase-button">Continue</button>
+                        <button type="submit" disabled={disable} onClick={onClickContinue} className="btn recovery-phrase-button">Continue</button>
                     </div>
                 </div>
             </div>

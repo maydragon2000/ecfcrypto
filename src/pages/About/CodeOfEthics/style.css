@@ -1,0 +1,39 @@
+.code_of_ethics{
+    background-color: #E6E9F1;
+    padding: 100px 60px;
+    color: #2B3144;
+}
+
+.code_of_ethics h1{
+    font-size: 33px;
+    margin-bottom: 20px;
+}
+
+.code_of_ethics h2{
+    font-size: 28px;
+}
+
+.code_of_ethics h3{
+    font-size: 24px;
+}
+
+@media (max-width:500px){
+    .code_of_ethics{
+     padding: 100px 40px;
+    }
+    .code_of_ethics h1{
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    .code_of_ethics h2{
+        font-size: 22px;
+    }
+}
+
+@media (max-width:400px){
+    .code_of_ethics{
+     padding: 70px 20px;
+    }
+    
+}

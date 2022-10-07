@@ -213,6 +213,7 @@
 
 .market .toolbar .left {
     display: flex;
+    align-items: center;
 }
 
 
@@ -329,4 +330,329 @@
 
 .market .market-table-small {
     height: 90%;
+}
+
+.market-table {
+    display: block;
+    overflow-x: scroll;
+}
+
+.market-table thead,
+.market-table tbody {
+    display: block;
+    width: 100%;
+    min-width: 1000px;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile {
+    display: none;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap {
+    display: flex;
+    position: relative;
+    background-color: #080808;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-name {
+    width: 50%;
+    display: flex;
+    height: 30px;
+    align-items: center;
+    color: white;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-name img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-name p {
+    display: none;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-price {
+    position: absolute;
+    padding-top: 50px;
+    display: flex;
+    width: 50%;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-price h5 {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-price p {
+    color: #03A66D;
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-graph {
+    width: 50%;
+    margin: 10px 0px;
+}
+
+.market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-graph .up {
+    filter: brightness(0%) saturate(100%) invert(63%) sepia(91%) saturate(4256%) hue-rotate(87deg) brightness(125%) contrast(119%);
+    width: 100%;
+}
+
+
+/* light mode */
+
+.light_market {
+    background-color: #E6E9F1;
+}
+
+.light_market .prices-by-marketcap {
+    background-color: white;
+}
+
+.light_market .prices-by-marketcap .filter .left h1 {
+    color: #2B3144;
+}
+
+.light_market .prices-by-marketcap .filter .left p {
+    color: #545766;
+}
+
+.light_market .prices-by-marketcap .topcoin-wrap .coin-wrap {
+    background-color: white;
+}
+
+.light_market .prices-by-marketcap .topcoin-wrap .coin-wrap .coin-name h5 {
+    color: #232530;
+}
+
+.light_market .prices-by-marketcap .topcoin-wrap .coin-wrap .coin-price h5 {
+    color: #232530;
+}
+
+
+.light_market .prices-by-marketcap .topcoin-wrap .coin-wrap-animation {
+    box-shadow: 0px 20.2977px 62.72px rgba(210, 208, 225, 0.172525),
+        0px 10.8521px 33.5331px rgba(210, 208, 225, 0.143066),
+        0px 6.08362px 18.7984px rgba(210, 208, 225, 0.12),
+        0px 3.23097px 9.98369px rgba(210, 208, 225, 0.0969343),
+        0px 1.34448px 4.15444px rgba(210, 208, 225, 0.0674749);
+}
+
+.light_market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-name {
+    color: #232530;
+}
+
+.light_market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-price h5 {
+    color: #232530;
+}
+
+.light_market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap {
+    background-color: white;
+}
+
+.light_market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap-animation {
+    box-shadow: 0px 20.2977px 62.72px rgba(210, 208, 225, 0.172525),
+        0px 10.8521px 33.5331px rgba(210, 208, 225, 0.143066),
+        0px 6.08362px 18.7984px rgba(210, 208, 225, 0.12),
+        0px 3.23097px 9.98369px rgba(210, 208, 225, 0.0969343),
+        0px 1.34448px 4.15444px rgba(210, 208, 225, 0.0674749);
+}
+
+.light_market .market-unlogin {
+    background-color: white;
+}
+
+.light_market .filter-bar .right .search-input-wrap {
+    border: 1px solid #CCCED9;
+}
+
+.light_market .selectinput {
+    background-color: white;
+    border: solid 1px #232530;
+    color: #232530;
+}
+
+.light_market .filter-bar {
+    border-bottom: solid 1px #EFEFEF;
+}
+
+.light_market .toolbar {
+    border-bottom: solid 1px #EFEFEF;
+}
+
+.light_market .market-table tbody tr .name h5 {
+    color: #2B3144;
+}
+
+.light_market .market-table-normal tbody tr .price,
+.light_market .market-table-normal tbody tr .high-price,
+.light_market .market-table-normal tbody tr .low-price {
+    color: #2B3144;
+}
+
+.light_market .market-table tbody tr .name p {
+    background-color: #E9EAF0;
+}
+
+.light_market .market-table tbody tr:hover {
+    background-color: #FEF2F2;
+}
+
+.light_market .filter-bar .left h5 {
+    color: #2B3144;
+}
+
+.light_market .filter-category-login {
+    background-color: #F0F1F5;
+}
+
+@media (max-width:1100px) {
+    .prices-by-marketcap .filter .left {
+        width: 80%;
+    }
+
+    .prices-by-marketcap .filter .right {
+        width: 20%;
+    }
+
+    .market .prices-by-marketcap .topcoin_wrap_mobile {
+        display: block;
+    }
+
+    .market .prices-by-marketcap .topcoin-wrap {
+        display: none;
+    }
+}
+
+@media (max-width:800px) {
+    .market .prices-by-marketcap .filter .left h1 {
+        font-size: 30px;
+    }
+
+    .market .filter-bar .right {
+        width: 100%;
+    }
+
+    .market .toolbar {
+        flex-direction: column;
+    }
+
+    .market .toolbar .left {
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .market .toolbar .right {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap-animation {
+        width: 80%;
+    }
+
+    .market .filter-bar .left {
+        width: 100%;
+    }
+
+    .market .filter-bar .right .search-input-wrap {
+        width: 100%;
+    }
+
+    .market .toolbar .left-login {
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .market .toolbar .left-login .dropdown_wrap {
+        width: 45%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+}
+
+@media (max-width:500px) {
+    .market .prices-by-marketcap .filter {
+        flex-direction: column;
+    }
+
+    .prices-by-marketcap .filter .left {
+        width: 100%;
+    }
+
+    .market {
+        padding: 70px 10px 60px 10px;
+    }
+
+    .market .prices-by-marketcap {
+        padding: 40px 20px;
+    }
+
+    .market .prices-by-marketcap .filter .left p {
+        width: 100%;
+    }
+
+    .market .prices-by-marketcap .filter .right {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .market .toolbar .left {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 0px;
+    }
+
+    .market .toolbar .left .dropdown_wrap {
+        width: 45%;
+        margin-bottom: 20px;
+    }
+
+    .market-table-footer {
+        flex-direction: column;
+    }
+
+    .selectinput {
+        left: 20px;
+        width: 80%;
+    }
+
+    .market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap-animation {
+        width: 90%;
+    }
+}
+
+@media (max-width:400px) {
+    .selectinput {
+        left: 15px;
+        width: 95%;
+    }
+
+    .market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap {
+        height: 170px;
+    }
+
+    .market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-graph {
+        position: absolute;
+        width: 200px;
+        margin-top: 85px;
+    }
+}
+
+@media (max-width:350px) {
+    .market .prices-by-marketcap .topcoin_wrap_mobile .coin-wrap .coin-graph {
+        position: absolute;
+        width: 170px;
+        margin-top: 85px;
+    }
 }

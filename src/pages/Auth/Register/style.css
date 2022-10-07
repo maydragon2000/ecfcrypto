@@ -25,7 +25,8 @@
 }
 
 .register .logo a img {
-    width: 40px;
+    width: 60px;
+    height: 40px;
     margin-right: 10px;
 }
 
@@ -171,4 +172,78 @@ input:-webkit-autofill:focus {
     color: red;
     margin-left: -20px;
     text-align: start;
+}
+
+/* light mode */
+
+.light_register {
+    background-color: white;
+}
+
+.light_register .register-inner h1{
+    color: #2B3144;
+}
+
+.light_register .register-inner .userName-wrap, .light_register .register-inner .password-wrap{
+    background-color: #E2F2FF;
+}
+
+.light_register .register-inner .userName-wrap input, .light_register .register-inner .password-wrap input{
+    color: #2B3144;
+}
+
+.light_register .register-inner .register-agree-wrap p{
+    color: #2B3144;
+}
+
+.light_register .register-inner .go-login-wrap{
+    color: #2B3144;
+}
+
+.light_register .logo a p{
+    color: #2B3144;
+}
+
+@media (max-width:500px) {
+    .register {
+        padding: 50px 20px;
+    }
+
+    .register-inner {
+        width: 100%;
+        padding-top: 70px
+    }
+
+    .register-inner .userName-wrap,
+    .register-inner .password-wrap {
+        width: 100%;
+    }
+
+    .register-inner h1 {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .register .logo {
+        right: 20px;
+    }
+}
+
+@media (max-width:350px) {
+    .register-inner .go-login-wrap {
+        flex-direction: column;
+    }
+
+    .register-inner .go-login-wrap h5 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .register-inner .go-login-wrap a {
+        text-align: center;
+    }
+
+    .register-inner .register-agree-wrap p {
+        font-size: 14px;
+    }
 }

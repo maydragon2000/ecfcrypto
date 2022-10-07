@@ -3,6 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: Inter;
+    /* font-family: Inter; */
     color: white;
+}
+
+.light_home {
+    background: white;
 }

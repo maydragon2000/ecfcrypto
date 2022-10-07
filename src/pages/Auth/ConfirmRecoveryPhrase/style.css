@@ -25,7 +25,8 @@
 }
 
 .confirm-recovery-phrase .logo a img {
-    width: 40px;
+    width: 60px;
+    height: 40px;
     margin-right: 10px;
 }
 
@@ -132,4 +133,63 @@
 
 .confirm-recovery-phrase .username-wrap input:focus-visible {
     outline: none;
+}
+
+/* light mode */
+
+.light_confirm-recovery-phrase{
+    background-color: white;
+}
+
+.light_confirm-recovery-phrase .confirm-recovery-phrase-inner h1{
+    color: #2B3144;
+}
+.light_confirm-recovery-phrase .confirm-recovery-phrase-inner p{
+    color: #2B3144;
+}
+
+.light_confirm-recovery-phrase  .username-wrap, .light_confirm-recovery-phrase .confirm-recovery-phrase-inner .word-wrap{
+    background-color: #E2F2FF;
+}
+
+.light_confirm-recovery-phrase .username-wrap input{
+    color: #2B3144;
+}
+
+.light_confirm-recovery-phrase .confirm-recovery-phrase-inner .word-wrap input{
+    color: #2B3144;
+}
+
+.light_confirm-recovery-phrase .logo a p{
+    color: #2B3144;
+}
+
+@media (max-width:1100px) {
+    .confirm-recovery-phrase-inner {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width:500px) {
+    .confirm-recovery-phrase-inner h1 {
+        font-size: 23px;
+    }
+
+    .confirm-recovery-phrase .logo {
+        left: 40px;
+    }
+
+    .confirm-recovery-phrase-inner .word-wrap {
+        width: 43%;
+    }
+}
+
+@media (max-width:350px) {
+    .confirm-recovery-phrase-inner h1 {
+        font-size: 20px;
+    }
+
+    .confirm-recovery-phrase .logo {
+        left: 20px;
+    }
 }

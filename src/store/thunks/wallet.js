@@ -18,8 +18,7 @@ export const attemptGetWalletAddress = (userName) => (dispatch) => getWalletAddr
         console.log("network error");
     })
 export const attemptSendWalletTokenList = (data) => (dispatch) => postWalletTokenList(data)
-    .then((res) => {
-        // dispatch(setWalletData(res.data.tokenlist));
+    .then(() => {
         return true;
     })
     .catch(() => {
@@ -28,7 +27,6 @@ export const attemptSendWalletTokenList = (data) => (dispatch) => postWalletToke
 
 export const attemptGetWalletData = (userName) => (dispatch) => getWalletData(userName)
     .then((res) => {
-        console.log(res.data, "res wallet detail");
         dispatch(setWalletData(res.data));
         return true;
     })

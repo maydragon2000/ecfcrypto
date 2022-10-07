@@ -1,0 +1,138 @@
+.upload_id {
+    background: white;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0px;
+}
+
+.upload_id .logo {
+    position: absolute;
+    top: 50px;
+    right: 200px;
+}
+
+.upload_id .logo a {
+    width: 180px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #2B3144;
+}
+
+.upload_id .logo a img {
+    width: 60px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.upload_id .logo a p {
+    margin-bottom: 0px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.upload_id-inner {
+    width: 562px;
+    height: 70%;
+    
+}
+
+.upload_id-inner h1 {
+    font-size: 39px;
+    color: #2B3144;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s,
+        color 600000s 0s;
+}
+
+.upload_id-inner .image_wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.upload_id-inner .image_wrap img{
+    width: 300px;
+    height: 200px;
+}
+
+.upload_id-inner .image_wrap .real_avatar{
+    width: 300px;
+    height: 300px;
+}
+
+.upload_id-inner .image_wrap h4{
+    color: #2B3144;
+}
+
+.upload_id-inner .description_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload_id-inner li{
+    color: rgb(130, 119, 135);
+}
+
+.upload_id-inner h5{
+    color: rgb(105, 106, 106);
+    width: fit-content;
+}
+
+.upload_id-inner .button_wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.upload_id-inner .button_wrap .next_button{
+    background: #5367FF;
+    border-radius: 10px;
+    width: 230px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+}
+
+.upload_id-inner ul{
+    width: fit-content;
+}
+@media (max-width:1200px) {
+    .upload_id-inner {
+        width: 100%;
+        padding-top: 70px
+    }
+}
+
+@media (max-width:500px) {
+    .upload_id {
+        padding: 50px 20px;
+    }
+
+    .upload_id-inner h1 {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .upload_id .logo {
+        right: 20px;
+    }
+}
+

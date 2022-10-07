@@ -139,7 +139,7 @@
     color: white;
 }
 
-.profile-setting-save {
+.profile .profile-setting-save {
     width: 215px;
     height: 60px;
     background-color: #5367FF;
@@ -147,6 +147,96 @@
     opacity: .9;
 }
 
-.profile-setting-save:hover {
+.profile .profile-setting-save:hover {
     opacity: 1;
+}
+
+/* light mode */
+
+.light_personal .profile-title h1 {
+    color: #2B3144;
+}
+
+.light_personal .profile h2 {
+    color: #2B3144;
+}
+
+.light_personal .profile-title button {
+    border: 1px solid #CCCED9;
+}
+
+.light_personal .profile .information-item .input-wrap {
+    background-color: #F1F2F4;
+}
+
+.light_personal .profile .personal-information-wrap {
+    border-bottom: solid 1px #E9EAF0;
+}
+
+.light_personal .profile-setting-cancel {
+    background-color: #E9EAF0;
+}
+
+.light_personal .sidenav---sidenav-toggle---1KRjR .sidenav---icon-bar---u1f02 {
+    background-color: black;
+}
+
+.light_personal .security-profile h1 {
+    color: #2B3144;
+}
+
+.light_personal .security-profile h2 {
+    color: #2B3144;
+}
+
+.light_personal .security-profile .password-input-wrap {
+    background-color: #F1F2F4;
+}
+
+@media (max-width:500px) {
+    .personal-information-wrap-column {
+        flex-direction: column;
+    }
+
+    .profile .information-item {
+        width: 100%;
+    }
+
+    .profile-setting {
+        flex-direction: column;
+    }
+
+    .profile-setting-button-wrap {
+        flex-direction: column;
+    }
+
+    .profile-setting-cancel {
+        margin-bottom: 20px;
+    }
+
+    .profile-setting-button-wrap button {
+        width: 100%;
+    }
+
+
+}
+
+@media (max-width:350px) {
+    .profile-title {
+        flex-direction: column;
+    }
+
+    .profile-title h1 {
+        margin-bottom: 20px;
+    }
+
+    .profile-title button {
+        width: 100%;
+    }
+
+    .profile p {
+        font-size: 12px;
+    }
+
+
 }

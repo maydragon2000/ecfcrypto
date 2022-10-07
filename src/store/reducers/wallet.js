@@ -28,7 +28,8 @@ export default function wallet(state = inititalState, action) {
             };
         case SET_WALLET_DATA:
             return {
-                walletData: action.walletData
+                walletData: action.walletData,
+                walletAddress:getInitialWalletData()
             };
         default:
             return state;

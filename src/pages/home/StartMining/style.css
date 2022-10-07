@@ -73,3 +73,53 @@
     font-size: 18px;
     margin-left: 20px;
 }
+
+@media (max-width:1100px) {
+    .start-mining {
+        width: 90%;
+    }
+}
+
+@media (max-width:800px) {
+    .start-mining {
+        width: 100%;
+        border-radius: 0px;
+    }
+}
+
+@media (max-width:500px) {
+    .start-mining {
+        flex-direction: column;
+    }
+
+    .start-mining .left {
+        width: 100%;
+        padding: 50px 0px 0px 0px;
+    }
+
+    .start-mining .right {
+        width: 100%;
+        flex-direction: column;
+        padding: 0px 0px 50px 0px;
+    }
+
+    .start-mining .left h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .start-mining .left p {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .start-mining .right .input-wrap {
+        width: 100%;
+        margin-bottom: 42px;
+    }
+
+    .start-mining .right a {
+        border-radius: 10px;
+        width: 100%;
+    }
+}

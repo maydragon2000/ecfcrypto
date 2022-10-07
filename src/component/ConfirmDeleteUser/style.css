@@ -1,0 +1,28 @@
+.confirm_delete_user .modal_body{
+    padding: 50px 20px;
+}
+
+.confirm_delete_user  button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px white;
+    color: white;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.confirm_delete_user  button:hover{
+    opacity: 1;
+}
+
+.confirm_delete_user .confirm_button{
+    background-color: #5367FF;
+}
+
+.confirm_delete_user .cancel_button{
+    color: #5367FF;
+    border: solid 1px #5367FF;
+}

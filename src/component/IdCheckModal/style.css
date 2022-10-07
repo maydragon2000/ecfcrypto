@@ -1,0 +1,94 @@
+.id_check_modal .modal-dialog{
+    max-width: 800px;
+}
+
+.id_check_modal h3{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.id_check_modal .real_photo_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.id_check_modal .real_photo_wrap_inner{
+    padding: 10px;
+    border: solid 1px grey;
+    border-radius: 5px;
+}
+
+.id_check_modal .real_photo_wrap img{
+    width: 250px;
+    height: 250px;
+}
+
+
+.id_check_modal .image_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.id_check_modal .image_wrap_inner{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: solid 1px grey;
+    border-radius: 5px;
+}
+
+.id_check_modal .image_wrap img{
+    width: 300px;
+    height: 200px;
+}
+
+.id_check_modal .person_info{
+    padding: 20px 30px;
+}
+
+.id_check_modal .person_info_inner{
+    display: flex;
+    width: 100%;
+}
+
+.id_check_modal .person_info_inner .single_info_wrap{
+    width: 50%;
+    display: flex;
+}
+
+.id_check_modal .person_info_inner .single_info_wrap label{
+    font-size: 20px;
+    width: 100px;
+}
+
+.id_check_modal .person_info_inner .single_info_wrap p{
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.id_check_modal .modal_footer button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px white;
+    color: white;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.id_check_modal .modal_footer .allow_button{
+    background-color: #5367FF;
+}
+
+.id_check_modal .modal_footer .disable_button{
+    background-color: #EF4444;
+}
+
+.id_check_modal .modal_footer button:hover{
+    opacity: 1;
+}

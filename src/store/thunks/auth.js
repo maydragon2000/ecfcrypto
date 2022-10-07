@@ -8,23 +8,30 @@ import {
   resetUser,
   changePassword,
   resetPassword,
-  uploadImage
+  uploadImage,
+  sendEmail
 } from "../../api/index";
 
 export const attemptLogin = (user) => (dispatch) =>
-  postLogin(user).then(({ data }) => {
-
-    if (data.error_message === undefined) {
-      const decoded = jwt_decode(data.token);
+  postLogin(user).then((res) => {
+    console.log(res, "login test");
+    if (res.status === 200) {
+      const decoded = jwt_decode(res.data.token);
       dispatch(login(decoded));
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", res.data.token);
       return 200;
+    } else if(res.status === 201) {
+      return 201;
     }
   }).catch(({ response }) => {
     if (response.status === 400)
       return 400
+    else if (response.status === 401)
+      return 401;
+    else if (response.status === 402)
+      return 402;
     else if (response.status === 404)
-      return 404
+      return 404;
     else return 500
   });
 
@@ -51,6 +58,8 @@ export const attemptResetUser = (user) => (dispatch) =>
       return false
     });
 export const attemptChangePassword = (data) => () => changePassword(data);
+export const attemptSendEmail = (data) => () => sendEmail(data);
+
 export const attemptUploadImage = (data) => (dispatch) =>
   uploadImage(data)
     .then((res) => {

@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./style.css"
 
 const ConfirmRecoveryPhrase = () => {
+
+    const {styleMode} = useSelector(state => state.user);
     var numberList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"]
     const [userName, setUserName] = useState("");
     const dispatch = useDispatch();
@@ -39,12 +41,12 @@ const ConfirmRecoveryPhrase = () => {
     }
     return (
         <>
-            <div className="confirm-recovery-phrase">
+            <div className={`confirm-recovery-phrase light_confirm-recovery-phrase`}>
                 <ToastContainer limit={3} autoClose={3000} hideProgressBar={true} theme="colored" />
                 <div className="logo">
                     <Link to="/">
-                        <img alt="" src="image/header-logo.png" />
-                        <p>Crypto Trustable</p>
+                        <img alt="" src="image/logo.png" />
+                        <p>ECF Crypto</p>
                     </Link>
                 </div>
                 <div className="confirm-recovery-phrase-inner">

@@ -1,0 +1,69 @@
+.user_update_modal .personal_information_wrap_column{
+    display: flex;
+    justify-content: space-between;
+}
+.user_update_modal .modal-dialog{
+    max-width: 800px;
+}
+
+.user_update_modal .information_item{
+    width: 48%;
+}
+
+.user_update_modal .information_item label{
+    color: #6C7080;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.user_update_modal .information_item .input_wrap{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    align-items: center;
+    padding: 14px 20px;
+    justify-content: space-between;
+    background-color: #F1F2F4;
+}
+
+.user_update_modal .information_item .input_wrap input{
+    background-color: transparent;
+    color: #9295A6;
+    font-size: 14px;
+    width: 80%;
+    border: 0px;
+}
+
+.user_update_modal .information_item .input_wrap input:focus-visible{
+    outline: none;
+}
+
+.user_update_modal .form-control:focus{
+    box-shadow: none;
+}
+.user_update_modal .modal_footer button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px white;
+    color: white;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.user_update_modal .modal_footer button:hover{
+    opacity: 1;
+}
+
+.user_update_modal .modal_footer .update_button{
+    background-color: #5367FF;
+}
+
+.user_update_modal .modal_footer .cancel_button{
+    color: #5367FF;
+    border: solid 1px #5367FF;
+}

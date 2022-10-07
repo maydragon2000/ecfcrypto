@@ -11,7 +11,7 @@ const DownloadApp = () => {
                 <div className="col-8 right">
                     <p className="title">Download the app</p>
                     <h1>Trade Anywhere, Anytime</h1>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+                    <p>The global crypto market cap is $940.86B.</p>
                     <div className="download-items">
                         <div className="download-item">
                             <div className="download-item-inner">

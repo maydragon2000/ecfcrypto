@@ -8,7 +8,7 @@ import Error from "../../../component/Error/Error"
 import { setResponseStatus } from "../../../store/actions/user";
 import "./style.css";
 const ResetPassword = () => {
-    const { name, isVerify } = useSelector((state) => state.user);
+    const { name, isVerify, styleMode } = useSelector((state) => state.user);
     const [passwordShow, setPasswordShow] = useState(false);
     const [passwordConfirmShow, setPasswordConfirmWrap] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -46,11 +46,11 @@ const ResetPassword = () => {
             {(formik) => {
                 return (
                     <>
-                        <div className="reset-password">
+                        <div className={`reset-password light_reset-password`}>
                             <div className="logo">
                                 <Link to="/">
-                                    <img alt="" src="image/header-logo.png" />
-                                    <p>Crypto Trustable</p>
+                                    <img alt="" src="image/logo.png" />
+                                    <p>ECF Crypto</p>
                                 </Link>
                             </div>
                             <div className="reset-password-inner">

@@ -1,12 +1,15 @@
 .header .navbar-brand img {
-    width: 50px;
+    width: 130px;
+    margin-right: 20px;
 }
 
 .header .navbar {
     height: 120px;
     justify-content: space-between;
-    font-family: Inter;
+    /* font-family: Inter; */
     padding: 0px 80px 0px 50px;
+    width: 100%;
+    background-color: #121318;
 }
 
 .header .navbar-brand {
@@ -21,10 +24,12 @@
     color: white;
     margin-right: 20px;
     margin-left: 10px;
+    /* display: none; */
 }
 
 .header .navlink-wrap {
     display: flex;
+    margin-right: 70px;
 }
 
 .header .nav-link {
@@ -44,6 +49,7 @@
 
 .header .button-wrap {
     display: flex;
+    align-items: center;
 }
 
 .header .button-wrap .select-currency input {
@@ -157,7 +163,7 @@
 .header .dropdown button {
     background: transparent !important;
     border: 0px;
-    color: #6C7080;
+    color: #6C7080 !important;
     font-size: 16px;
 }
 
@@ -167,7 +173,7 @@
 
 .header .dropdown .dropdown-toggle::after {
     position: absolute;
-    top: 28px;
+    top: 18px;
     margin-left: 10px;
 }
 
@@ -175,4 +181,267 @@
     background-color: #080808 !important;
     color: white;
     border: 0px !important;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+.modal-open {
+    padding-right: 0px !important;
+}
+
+.mobile_menu_side {}
+
+.mobile_menu_side .modal-dialog {
+    max-width: calc(100% - 40px);
+    margin: 20px;
+    margin-top: 150px;
+}
+
+.mobile_menu_side .modal-content {
+    background-color: #121318;
+}
+
+.mobile_menu_side .navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 0px;
+}
+
+.mobile_menu_header {
+    display: flex;
+    font-size: 16px;
+    color: white;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: solid 1px rgba(233, 234, 240, 0.15);
+    width: 100%;
+    justify-content: center;
+}
+
+.mobile_menu_header .user-picture img {
+    width: 60px;
+    border-radius: 30px;
+    margin-right: 20px;
+}
+
+.mobile_menu_header p {
+    margin-bottom: 0px;
+}
+
+.mobile_menu_side .mobile_menu_body a {
+    color: #6C7080;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.mobile_menu_side .mobile_menu_body a svg {
+    margin-right: 5px;
+    color: #6C7080;
+}
+
+.mobile_menu_side .mobile_menu_body a svg path{
+    stroke: #6C7080;
+}
+
+.mobile_menu_side .mobile_menu_body a:hover {
+    color: #5367FF;
+}
+
+.mobile_menu_side .auth_button_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    border-top: solid 1px rgba(233, 234, 240, 0.15);
+    margin-top: 40px;
+}
+
+.logout_btn {
+    background-color: #5367FF;
+    border-radius: 8px;
+    border: 0px;
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.mobile_menu_side .auth_button_wrap a {
+    width: 40%;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    max-width: 200px;
+}
+
+.mobile_menu_side .login-button {
+    color: #5367FF !important;
+    background-color: white;
+    margin-right: 20px;
+}
+
+.mobile_menu_side .register-button {
+    color: white !important;
+    background-color: #5367FF;
+}
+
+.white_button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.white_button svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+.dark_button {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 0px;
+}
+
+.dark_button svg {
+    width: 30px;
+    height: 30px;
+}
+
+.header {
+    display: flex;
+}
+
+.stylebutton_wrap {
+    background-color: #121318;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+}
+
+/* light style */
+
+.light_header .navbar {
+    background-color: white;
+}
+
+.light_header .nav-link {
+    color: #2B3144;
+}
+
+.light_header .stylebutton_wrap {
+    background-color: white;
+}
+
+.light_header .mobile-menu button svg {
+    color: #2B3144;
+}
+
+.light_header .login-button {
+    background-color: #E9EAF0;
+}
+
+.light_mobile_menu_side .modal-content {
+    background-color: white;
+}
+
+.light_mobile_menu_side .login-button {
+    background-color: #E9EAF0;
+}
+
+.light_mobile_menu_side .mobile_menu_header p {
+    color: #2B3144;
+}
+
+.light_header .wallet-button {
+    background-color: #F0F1F5;
+}
+
+@media (max-width: 1024px) {
+    .header .navbar {
+        height: 100px;
+    }
+
+    .header .navbar-brand img {
+        width: 100px;
+    }
+
+    .header .nav-link {
+        font-size: 14px;
+    }
+
+    .header .wallet-button {
+        width: 100px;
+        height: 50px;
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .header .navlink-wrap {
+        display: none;
+    }
+
+    .header .wallet-button {
+        display: none !important;
+    }
+
+    .header .button-wrap {
+        display: none !important;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+
+    .mobile-menu button {
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        border: 0px;
+    }
+
+    .mobile-menu button svg {
+        color: white;
+        width: 30px;
+        height: 30px;
+    }
+
+    .mobile_menu_side .nav-link {
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .header .navbar {
+        padding: 0px 20px 0px 30px;
+    }
+}
+
+@media (max-width: 360px) {
+    .header .navbar {
+        padding: 0px 10px 0px 20px;
+    }
 }

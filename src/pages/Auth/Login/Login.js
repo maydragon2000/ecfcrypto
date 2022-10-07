@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./style.css"
 
 const Login = (props) => {
-    const { responseStatus } = useSelector((state) => state.user);
+    const { responseStatus, styleMode } = useSelector((state) => state.user);
     const [passwordShow, setPasswordShow] = useState(false);
     const [loading, setLoading] = useState(false);
     const [serverError, setServerError] = useState("");
@@ -27,6 +27,8 @@ const Login = (props) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const idChecking = () => toast.info("Your Id is checking. Please wait some time.");
+    const idDisabled = () => toast.error("This user is blocked.");
     const passwordIncorrect = () => toast.error("Password is not correct.");
     const userNameIncorrect = () => toast.error("Username is not correct.");
     const successRegister = () => toast.success(({ closeToast }) => <div><label>Success Register.</label><label> Please Sign In Now</label></div>);
@@ -40,8 +42,18 @@ const Login = (props) => {
                 dispatch(attemptGetWalletAddress(values.userName));
                 navigate("/market");
             }
+            if (response === 201) {
+                localStorage.setItem("admin", "this user is admin");
+                navigate("/admin");
+            }
             if (response === 400) {
                 passwordIncorrect();
+            }
+            if (response === 401) {
+                idChecking();
+            }
+            if (response === 402) {
+                idDisabled();
             }
             if (response === 404) {
                 userNameIncorrect();
@@ -73,11 +85,11 @@ const Login = (props) => {
             {(formik) => {
                 return (
                     <>
-                        <div className="login">
+                        <div className={`login light_login`}>
                             <div className="logo">
                                 <Link to="/">
-                                    <img alt="" src="image/header-logo.png" />
-                                    <p>Crypto Trustable</p>
+                                    <img alt="" src="image/logo.png" />
+                                    <p>ECF Crypto</p>
                                 </Link>
                             </div>
                             <ToastContainer limit={3} autoClose={3000} hideProgressBar={true} theme="colored" />

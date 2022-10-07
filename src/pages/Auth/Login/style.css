@@ -26,7 +26,8 @@
 }
 
 .login .logo a img {
-    width: 40px;
+    width: 60px;
+    height: 40px;
     margin-right: 10px;
 }
 
@@ -167,4 +168,73 @@ input:-webkit-autofill:focus {
     font-size: 16px;
     text-decoration: none;
     margin-bottom: 0px;
+}
+
+/* light mode */
+
+.light_login{
+    background-color: white;
+}
+
+.light_login .login-inner h1{
+    color: #2B3144;
+}
+
+.light_login .login-inner .email-wrap, .light_login .login-inner .password-wrap{
+    background-color: #E2F2FF;
+}
+
+.light_login .login-inner .email-wrap input, .light_login .login-inner .password-wrap input{
+    color: #2B3144;
+}
+
+.light_login .login-inner .go-register-wrap h5{
+    color: #2B3144;
+}
+
+.light_login .logo a p{
+    color: #2B3144;
+}
+
+@media (max-width:500px) {
+    .login {
+        padding: 50px 20px;
+    }
+
+    .login-inner {
+        width: 100%;
+    }
+
+    .login-inner .email-wrap,
+    .login-inner .password-wrap {
+        width: 100%;
+    }
+
+    .login-inner .go-register-wrap {
+        flex-direction: column;
+    }
+
+    .login-inner .go-register-wrap h5 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .login-inner .go-register-wrap a {
+        text-align: center;
+    }
+
+    .login .logo {
+        right: 20px;
+    }
+}
+@media (max-width:350px) {
+    .login-inner h1{
+        font-size: 25px;
+    }
+    .login .logo a img{
+        width: 30px;
+    }
+    .login .logo {
+        right: 10px;
+    }
 }

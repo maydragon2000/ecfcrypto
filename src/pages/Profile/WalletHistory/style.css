@@ -6,17 +6,20 @@
 
 .wallet-history table {
     width: 100%;
-    display: flex;
+    display: block;
     flex-direction: column;
+    overflow: scroll;
+    margin-top: 20px;
 }
 
 .wallet-history table thead {
-    display: flex;
+    display: block;
     height: 43px;
     color: #6c7080;
     font-size: 16px;
     border-bottom: solid 2px rgb(33, 37, 41);
     align-items: center;
+    min-width: 1250px;
 }
 
 .wallet-history table thead tr {
@@ -29,10 +32,11 @@
 }
 
 .wallet-history table tbody {
-    display: flex;
+    display: block;
     width: 100%;
     font-size: 16px;
     flex-direction: column;
+    min-width: 1250px;
 }
 
 .wallet-history table tbody tr {
@@ -60,9 +64,204 @@
 .wallet-history .coinName,
 .wallet-history .date,
 .wallet-history .amount {
-    width: 17%;
+    width: 13%;
 }
 
 .wallet-history .address {
-    width: 30%;
+    width: 25%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.wallet-history .send_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.wallet-history .send_wrap .input_wrap{
+    display: flex;
+    padding: 10px;
+    width: 500px;
+    justify-content: center;
+    border: solid 1px grey;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.wallet-history .send_wrap .input_wrap input{
+    border: 0px;
+    width: 100%;
+    background-color: transparent;
+    color: white;
+}
+
+.wallet-history .send_wrap .input_wrap input:focus-visible{
+    outline: none;
+}
+
+.wallet-history .send_wrap button{
+    display: flex;
+    height: 52px;
+    background-color: #5367FF;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    border: 0px;
+    width: 500px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.wallet-history .send_wrap button:hover{
+    opacity: 1;
+}
+
+.wallet-history .send_wrap .remove_coin{
+    background-color: #DC2626;
+}
+
+/* light mode */
+.light_wallet-history h1{
+    color: #2B3144;
+}
+
+.light_wallet-history table tbody tr{
+    color: #2B3144;
+}
+
+.light_wallet-history table tbody tr:hover{
+    background-color: #FEF2F2;
+}
+
+.wallet-history .wallet_button_wrap{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.wallet-history .wallet_button_wrap button{
+    width: 140px;
+    height: 50px;
+    border: 1px solid rgba(204, 206, 217, 0.15);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: #9295A6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wallet-history .wallet_button_wrap button svg{
+    margin-right: 5px;
+}
+
+.light_wallet-history .wallet_button_wrap button{
+    border: 1px solid #CCCED9;
+}
+
+.light_wallet-history .send_wrap .input_wrap input{
+    color: #2B3144;
+}
+
+.wallethisory_select{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.wallethisory_select select{
+    width: 83px;
+    height: 52px;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9295A6;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+.wallehistory_button_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.wallehistory_button_wrap p{
+    margin-bottom: 0px;
+    border : solid 1px #6c7080;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.wallehistory_button_wrap button{
+    display: flex;
+    padding: 6px 12px;
+    border: solid 1px white;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #2B3144;
+    margin-right: 5px;
+    height: 38px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.wallehistory_button_wrap button:hover{
+    border: solid 1px #5367FF;
+    color: #5367FF;
+}
+
+.wallehistory_button_wrap input{
+    width: 30px;
+    margin-left: 10px;
+    border: 0px;
+}
+
+.wallehistory_button_wrap input:focus-visible{
+    outline: none;
+}
+
+.wallethisory_select select:focus-visible{
+    outline: none;
+}
+
+
+@media (max-width: 500px) {
+    .wallet-history .send_wrap .input_wrap{
+        width: 100%;
+    }
+    .wallet-history .send_wrap button{
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .wallehistory_button_wrap button{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .wallehistory_button_wrap p label{
+        display: none;
+    }
+}
+
+@media (max-width:350px) {
+    .light_wallet-history .wallet_button_wrap button{
+        width: 100%;
+    }
+    .light_wallet-history .react-tabs__tab{
+        font-size: 11px;
+    }
 }

@@ -6,11 +6,11 @@ const AddCoinModal = ({ modalShow, onCloseModal, selectedValue, setSelectedValue
     const [marketData, setMarketData] = useState([
         {
             name: {
-                image: "polygon",
-                fullName: "Polygon",
-                logogram: "MATIC"
+                image: "tether",
+                fullName: "Tether",
+                logogram: "USDT"
             },
-            id: 3890,
+            id: 825,
         },
         {
             name: {
@@ -22,19 +22,11 @@ const AddCoinModal = ({ modalShow, onCloseModal, selectedValue, setSelectedValue
         },
         {
             name: {
-                image: "tether",
-                fullName: "Tether",
-                logogram: "USDT"
+                image: "SHIB",
+                fullName: "Shiba Inu",
+                logogram: "SHIB"
             },
-            id: 825,
-        },
-        {
-            name: {
-                image: "avalanche",
-                fullName: "Avalanche",
-                logogram: "AVAX"
-            },
-            id: 5805,
+            id: 5994,
         },
         {
             name: {
@@ -44,6 +36,7 @@ const AddCoinModal = ({ modalShow, onCloseModal, selectedValue, setSelectedValue
             },
             id: 4943,
         },
+        
         {
             name: {
                 image: "Wrapped Bitcoin",
@@ -78,19 +71,43 @@ const AddCoinModal = ({ modalShow, onCloseModal, selectedValue, setSelectedValue
         },
         {
             name: {
-                image: "Ethereum Classic",
-                fullName: "Ethereum Classic",
-                logogram: "ETC"
+                image: "ApeCoin",
+                fullName: "ApeCoin",
+                logogram: "APE"
             },
-            id: 1321,
+            id: 18876,
         },
         {
             name: {
-                image: "Bitcoin Cash",
-                fullName: "Bitcoin Cash",
-                logogram: "BCH"
+                image: "Chiliz",
+                fullName: "Chiliz",
+                logogram: "CHZ"
             },
-            id: 1831,
+            id: 4066,
+        },
+        {
+            name: {
+                image: "Decentraland",
+                fullName: "Decentraland",
+                logogram: "MANA"
+            },
+            id: 1966,
+        },
+        {
+            name: {
+                image: "The Sandbox",
+                fullName: "The Sandbox",
+                logogram: "SAND"
+            },
+            id: 6210,
+        },
+        {
+            name: {
+                image: "Quant",
+                fullName: "Quant",
+                logogram: "QNT"
+            },
+            id: 3155,
         },
     ]);
     let options = [];

@@ -7,19 +7,20 @@ import { IoWalletOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { attemptUploadImage } from "../../store/thunks/auth";
 import { ToastContainer, toast } from 'react-toastify';
+import {VscHistory} from "react-icons/vsc";
 import 'react-toastify/dist/ReactToastify.css';
 import "./style.css";
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
-const LeftSide = () => {
-    const { user } = useSelector((state) => state.user);
+const LeftSide = ({ setIsVisible, isVisible }) => {
+    const { user, isAuth } = useSelector((state) => state.user);
     const [sendImageData, setSendImageData] = useState({
-        userName: user.name,
+        userName: !!user?user.name:"",
         image: ''
     })
-    const uploadedImage = user.image;
+    const uploadedImage = !!user?user.image:"";
     const [disable, setDisable] = useState(true);
-    const [isVisible, setIsVisible] = useState(true)
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [selectedImage, setSelectedImage] = useState(null);
@@ -28,11 +29,16 @@ const LeftSide = () => {
     };
     const hiddenFileInput = React.useRef(null);
     useEffect(() => {
+        if(!isAuth)
+            navigate('login');
+    },[])
+
+    useEffect(() => {
         if (sendImageData.image !== "")
-            setDisable(false);
-    })
+        setDisable(false);
+    },[sendImageData])
     const success = () => toast.success("Success Save New Avatar.");
-    const failed = () => toast.error("Error Save New Avatar.")
+    const failed = () => toast.error("Error Save New Avatar.");
     const sendUploadImage = () => {
         setDisable(true);
         dispatch(attemptUploadImage(sendImageData)).then((res) => {
@@ -42,12 +48,43 @@ const LeftSide = () => {
             setDisable(false);
         }).catch((res) => {
             failed();
-            setDisable(false)
+            setDisable(false);
         })
     }
+    useEffect(() => {
+        if (window.innerWidth >= 1100)
+            setIsVisible(true);
+        else setIsVisible(false);
+    }, []);
+
+    const onClickProfile = () => {
+        navigate("/profile");
+        if (window.innerWidth < 1100)
+            setIsVisible(false);
+    }
+
+    const onClickSecurity = () => {
+        navigate("sequrity");
+        if (window.innerWidth < 1100)
+            setIsVisible(false);
+    }
+
+    const onClickWallet = () => {
+        navigate("wallet");
+        if (window.innerWidth < 1100)
+            setIsVisible(false);
+    };
+
+    const onClickWalletHistory = () => {
+        navigate("walletHistory");
+        if (window.innerWidth < 1100)
+            setIsVisible(false);
+    }
+
+    console.log(selectedImage, "selectedImage");
     return (
         <>
-            <SideNav expanded={isVisible} >
+            <SideNav expanded={isVisible} className={isVisible ? "side_visible" : "side-unvisible"} >
                 <ToastContainer limit={3} autoClose={3000} hideProgressBar={true} theme="colored" />
                 <SideNav.Toggle
                     onClick={() => {
@@ -68,23 +105,29 @@ const LeftSide = () => {
                 <h2>{user?.name ?? ""}</h2>
                 <p>{user?.displayName ?? ""}</p>
                 <SideNav.Nav defaultSelected="profile">
-                    <NavItem eventKey="profile" onClick={() => navigate("/profile")}>
+                    <NavItem eventKey="profile" onClick={onClickProfile}>
                         <NavIcon>
                             <CgProfile />
                         </NavIcon>
                         <NavText>My Profile</NavText>
                     </NavItem>
-                    <NavItem eventKey="Sequrity" onClick={() => navigate("sequrity")}>
+                    <NavItem eventKey="Sequrity" onClick={onClickSecurity}>
                         <NavIcon>
                             <RiLock2Line />
                         </NavIcon>
                         <NavText>Security</NavText>
                     </NavItem>
-                    <NavItem eventKey="wallet" onClick={() => navigate("wallet")}>
+                    <NavItem eventKey="wallet" onClick={onClickWallet}>
                         <NavIcon>
                             <IoWalletOutline />
                         </NavIcon>
                         <NavText>Wallet</NavText>
+                    </NavItem>
+                    <NavItem eventKey="wallethisory" onClick={onClickWalletHistory}>
+                        <NavIcon>
+                            <VscHistory />
+                        </NavIcon>
+                        <NavText>Wallet History</NavText>
                     </NavItem>
                 </SideNav.Nav>
             </SideNav>

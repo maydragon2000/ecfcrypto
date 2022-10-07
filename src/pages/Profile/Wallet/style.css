@@ -1,7 +1,9 @@
 .wallet table {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    display: block;
+    /* flex-direction: column; */
+    overflow: scroll;
+
 }
 
 .wallet thead {
@@ -9,7 +11,9 @@
     color: #6c7080;
     font-size: 16px;
     border-bottom: solid 2px rgb(33, 37, 41);
-    display: flex;
+    display: block;
+    width: 100%;
+    min-width: 400px;
     align-items: center;
 }
 
@@ -24,10 +28,13 @@
 }
 
 .wallet tbody {
-    display: flex;
+    display: block;
     width: 100%;
     font-size: 16px;
-    flex-direction: column;
+    /* flex-direction: column; */
+    width: 100%;
+    min-width: 400px;
+    max-height: 560px;
 }
 
 .wallet tbody tr {
@@ -59,7 +66,30 @@
 .wallet h1 {
     font-size: 23px;
     color: white;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.wallet_address_wrap{
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    align-items: center;
+}
+.wallet h5{
+    margin-top: 10px;
+    color: white;
+}
+
+.wallet_address_wrap p{
+    font-size: 15px;
+    margin-bottom: 0px;
+    color: white;
+}
+
+.wallet_address_wrap button{
+    border: 0px;
+    background-color: transparent;
+    color: white;
 }
 
 .wallet-button-wrap {
@@ -141,54 +171,54 @@
 @-webkit-keyframes dot-Loader {
     0% {
         background: #fff;
-        box-shadow: inset 0 0 0 43px #121318;
+        box-shadow: inset 0 0 0 43px white;
     }
 
     25% {
         background: #e003ef;
-        box-shadow: inset 0 0 0 36px #121318;
+        box-shadow: inset 0 0 0 36px white;
     }
 
     50% {
         background: #fff;
-        box-shadow: inset 0 0 0 43px #121318;
+        box-shadow: inset 0 0 0 43px white;
     }
 
     75% {
         background: #3d3eff;
-        box-shadow: inset 0 0 0 36px #121318;
+        box-shadow: inset 0 0 0 36px white;
     }
 
     50% {
         background: #fff;
-        box-shadow: inset 0 0 0 43px #121318;
+        box-shadow: inset 0 0 0 43px white;
     }
 }
 
 @keyframes dot-Loader {
     0% {
         background: #fff;
-        box-shadow: inset 0 0 0 43px #121318;
+        box-shadow: inset 0 0 0 43px white;
     }
 
     25% {
         background: #e003ef;
-        box-shadow: inset 0 0 0 36px #121318;
+        box-shadow: inset 0 0 0 36px white;
     }
 
     50% {
         background: #fff;
-        box-shadow: inset 0 0 0 43px #121318;
+        box-shadow: inset 0 0 0 43px white;
     }
 
     75% {
         background: #3d3eff;
-        box-shadow: inset 0 0 0 36px #121318;
+        box-shadow: inset 0 0 0 36px white;
     }
 
     50% {
         background: #fff;
-        box-shadow: inset 0 0 0 43px #121318;
+        box-shadow: inset 0 0 0 43px white;
     }
 }
 
@@ -219,16 +249,115 @@
 }
 
 .Loader::after {
-    -webkit-animation: dot-Loader 1.5s infinite;
-    animation: dot-Loader 1.5s infinite;
     background: #e003ef;
     border-radius: 50%;
-    box-shadow: inset 0 0 0 45px #121318;
     content: "";
     height: 90px;
     left: 5px;
     position: absolute;
     top: 5px;
     width: 90px;
+    -webkit-animation: dot-Loader 1.5s infinite;
+    animation: dot-Loader 1.5s infinite;
+    box-shadow: inset 0 0 0 45px white
 }
 
+.wallet-button-wrap .buy_sell_button{
+    margin-right: 20px;
+    background-color: #5367FF;
+    color: white !important;
+}
+
+.transak_modal-overlay{
+    z-index: 2000 !important;
+}
+
+.transak_modal{
+    z-index: 2001 !important;
+}
+
+/* light mode */
+
+.light_wallet h1{
+    color: #2B3144;
+}
+
+.light_wallet .wallet-button-wrap button{
+    border: 1px solid #5367FF;
+    color: #5367FF;
+}
+
+.light_wallet  tbody tr{
+    color: #2B3144;
+}
+
+.light_wallet tbody tr:hover{
+    background-color: #FEF2F2;
+}
+
+.light_wallet h5{
+    color: #2B3144;
+}
+
+.light_wallet .wallet_address_wrap p{
+    color: #2B3144;
+}
+
+.light_wallet .wallet_address_wrap button{
+    color: #2B3144;
+}
+
+ 
+
+
+@media (max-width:1100px){
+    .add-coin-modal  .modal-dialog{
+        width: 600px;
+    }
+}
+
+@media (max-width:800px){
+    .add-coin-modal  .modal-dialog{
+        width: 500px;
+    }
+}
+
+@media (max-width:500px){
+    .add-coin-modal  .modal-dialog{
+        width: 90%;
+    }
+    .wallet_address_wrap{
+        width: 100%;
+    }
+    .wallet .wallet_address_wrap p{
+        white-space: nowrap;
+        font-size: 12px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 70%;
+    }
+    .wallet-button-wrap button{
+        margin-top: 30px;
+    }
+}
+
+@media (max-width:400px) {
+    .wallet-button-wrap{
+        flex-direction: column;
+    }
+    .light_wallet .wallet-button-wrap button{
+        width: 100%;
+    }
+    .wallet-button-wrap .buy_sell_button{
+        margin-right: 0px;
+    }
+}
+
+@media (max-width:350px) {
+    .wallet-button-wrap button{
+        width: 100%;
+    }
+    .wallet h1{
+        margin-bottom: 20px;
+    }
+}

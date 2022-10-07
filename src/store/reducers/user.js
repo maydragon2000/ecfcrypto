@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT_USER, SET_USER, RESET_USER, RECOVERY_PHRASE_VERIFY, SAVE_REGISTER_DATA, SET_RESPONSE_STATUS } from "../actions/user";
+import { LOGIN_USER, LOGOUT_USER, SET_USER, RESET_USER, RECOVERY_PHRASE_VERIFY, SAVE_REGISTER_DATA, SET_RESPONSE_STATUS, SET_DARK_WHITE_MODE } from "../actions/user";
 import jwt_decode from "jwt-decode";
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
   name: "",
   reigsterData: "",
   responseStatus: "",
+  styleMode: getstyleMode()
 };
 function getIsAuth() {
   try {
@@ -28,6 +29,19 @@ function setInitUser() {
     return decoded;
   } else {
     return null;
+  }
+}
+
+function getstyleMode() {
+  try {
+    const styleMode = localStorage.getItem('styleMode');
+    if (styleMode === "true") {
+      return true;
+    }
+    return false;
+  }
+  catch (err) {
+    return false;
   }
 }
 export default function user(state = initialState, action) {
@@ -63,11 +77,18 @@ export default function user(state = initialState, action) {
 
     case SAVE_REGISTER_DATA:
       return {
-        registerData: action.data
+        registerData: action.data,
+        styleMode:getstyleMode()
       };
     case SET_RESPONSE_STATUS:
       return {
         responseStatus: action.data
+      }
+    case SET_DARK_WHITE_MODE:
+      return {
+        styleMode: action.data,
+        isAuth: getIsAuth(),
+        user: setInitUser(),
       }
     default:
       return state;

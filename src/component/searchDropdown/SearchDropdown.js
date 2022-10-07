@@ -98,7 +98,7 @@ const SearchDropdown = ({ name, type, options, value, setValue, image, isOtherOp
     }
 
     return (
-        <>
+        <div className="dropdown_wrap">
             <Dropdown
                 isOpen={isOpen}
                 onClose={toggleOpen}
@@ -124,7 +124,7 @@ const SearchDropdown = ({ name, type, options, value, setValue, image, isOtherOp
                     className="selectinput"
                 />
             </Dropdown>
-        </>
+        </div>
     )
 }
 export default SearchDropdown;

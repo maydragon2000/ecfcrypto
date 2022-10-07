@@ -25,7 +25,8 @@
 }
 
 .reset-password .logo a img {
-    width: 40px;
+    width: 60px;
+    height: 40px;
     margin-right: 10px;
 }
 
@@ -119,4 +120,62 @@
     color: red;
     margin-left: -20px;
     text-align: start;
+}
+
+/* light mode */
+
+.light_reset-password{
+    background-color: white;
+}
+
+.light_reset-password .reset-password-inner h1{
+    color: #2B3144;
+}
+
+.light_reset-password .reset-password-inner .input-wrap{
+    background-color: #E2F2FF;
+}
+
+.light_reset-password .reset-password-inner .input-wrap input{
+    color: #2B3144;
+}
+
+.light_reset-password .logo a p{
+    color: #2B3144;
+}
+
+@media (max-width:1100px) {
+    .reset-password-inner {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width:800px) {
+    .reset-password .logo {
+        left: 40px;
+    }
+}
+
+@media (max-width:500px) {
+    .reset-password {
+        padding: 50px 20px;
+    }
+
+    .reset-password-inner {
+        width: 100%;
+    }
+
+    .reset-password-inner .input-wrap {
+        width: 100%;
+    }
+}
+
+@media (max-width:400px) {
+    .reset-password .logo {
+        left: 20px;
+    }
+
+    .reset-password-inner h1 {
+        font-size: 25px;
+    }
 }

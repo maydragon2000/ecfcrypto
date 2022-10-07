@@ -34,7 +34,7 @@ const Benefit = () => {
     },
     {
         image: "FastKYC.svg",
-        name: "NO KYC",
+        name: "LESS KYC",
         description: "For keeping your identity secret , you don't need to verify your KYC !"
     },
     {

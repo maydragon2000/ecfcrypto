@@ -1,13 +1,65 @@
-import React, { useEffect, useState } from "react";
-import { GoPlus } from "react-icons/go"
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { attemptGetWalletData, attemptSendWalletTokenList } from "../../../store/thunks/wallet"
 import AddCoinModal from "../../../component/AddCoinModal/AddCoinModal";
+import { RiFileCopyLine } from "react-icons/ri";
+import { GoPlus } from "react-icons/go";
+import { setSendStatus } from "../../../store/actions/send";
+import transakSDK from "@transak/transak-sdk";
+import { ToastHeader } from "react-bootstrap";
 import "./style.css"
+
+const getWidth = () =>{
+    var width = window.innerWidth;
+    console.log(width, "width");
+    if (width >= 500){
+        return "500px";
+    } else {
+        console.log(" width here");
+        return "320px"
+    }
+}
+
+const settings = {
+    apiKey: '2e2c5f04-7720-46ad-b940-c59db3bcd535',  // Your API Key
+    environment: 'STAGING', // STAGING/PRODUCTION
+    defaultCryptoCurrency: 'ETH',
+    themeColor: '000000', // App theme color
+    hostURL: window.location.origin,
+    widgetHeight: "700px",
+    widgetWidth: getWidth(),
+}
+
+export function openTransak() {
+    const transak = new transakSDK(settings);
+
+    transak.init();
+
+    // To get all the events
+    transak.on(transak.ALL_EVENTS, (data) => {
+        console.log(data)
+    });
+
+    // This will trigger when the user closed the widget
+    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (eventData) => {
+        console.log(eventData);
+        transak.close();
+    });
+
+    // This will trigger when the user marks payment is made.
+    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+        console.log(orderData);
+        window.alert("Payment Success")
+        transak.close();
+    });
+}
+
 const Wallet = () => {
     const { walletAddress, walletData } = useSelector(state => state.wallet);
-    const { isAuth, user } = useSelector(state => state.user);
+    const { isAuth, user, styleMode } = useSelector(state => state.user);
     const walletBalance = [
         {
             coinName: "Bitcoin",
@@ -46,10 +98,12 @@ const Wallet = () => {
         },
     ]
     const [selectedValue, setSelectedValue] = useState(undefined);
+    const [isCopyClipboard, setIsClipboard] = useState(false);
     const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const onOpenModal = () => {
         setModalShow(true);
     }
@@ -57,7 +111,7 @@ const Wallet = () => {
         setModalShow(false);
     }
     const onClickToken = (token) => {
-        navigate(`/profile/walletHistory/${token.coinName}/${token.id}`);
+        navigate(`/profile/walletHistory/${token.name}/${token.id}`);
     }
     useEffect(() => {
         if (!isAuth) {
@@ -70,6 +124,12 @@ const Wallet = () => {
                     setLoading(false)
                 })
     }, []);
+    const copySuccess = () => toast.success("Copy success");
+    const onClickClipboard = () => {
+        setIsClipboard(true);
+        copySuccess();
+    }
+    
     useEffect(() => {
         if (!modalShow && selectedValue) {
             const sendTokenList = selectedValue.map(item => item.label);
@@ -86,14 +146,42 @@ const Wallet = () => {
         }
     }, [modalShow]);
     console.log(walletData, "walletData");
+
+    const t = document.querySelector('#test')
+    
+    
     return (
         <>
-            <div className="wallet">
+            <ToastContainer limit={3} autoClose={3000} hideProgressBar={true} theme="colored" />
+            <div className={`wallet light_wallet`}>
                 <h1>
                     Wallet
                 </h1>
+                {walletAddress?
+                <>
+                <h5>BTC address</h5>
+                <div className="wallet_address_wrap">
+                <p>{walletAddress.bitcoinAddress}</p>
+                <CopyToClipboard text={walletAddress.bitcoinAddress}
+                    onCopy={onClickClipboard}>
+                    <button className="clip-button"><RiFileCopyLine /></button>
+                </CopyToClipboard>
+                </div>
+                <h5>ERC20 address</h5>
+                <div className="wallet_address_wrap">
+                <p>{walletAddress.ERC20Address}</p>
+                <CopyToClipboard text={walletAddress.ERC20Address}
+                    onCopy={onClickClipboard}>
+                    <button className="clip-button"><RiFileCopyLine /></button>
+                </CopyToClipboard>
+                </div>
+                
+                </>
+                :<></>
+                }
+                
                 <div className="wallet-button-wrap">
-
+                    <button className="buy_sell_button" onClick={() => openTransak()}>BUY/SELL</button>
                     <button onClick={onOpenModal}><GoPlus />Add Coin</button>
                 </div>
                 <table>
@@ -111,10 +199,10 @@ const Wallet = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {!walletData || loading ? <div className="loader-wrap"><div className="Loader"></div></div>
+                        {!walletData?<div className="loader-wrap"><div className="Loader"></div></div>:!walletData[0]  || loading ? <div className="loader-wrap"><div className="Loader"></div></div>
                             : <>
                                 {
-                                    walletData.map((item, index) => <tr key={index} onClick={() => onClickToken(item)}>
+                                    walletData.map((item, index) => <tr key={index} onClick={()=>navigate('/profile/walletHistory')}>
                                         <td className="coinName">
                                             <img alt="" src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`} />
                                             {item.name}
@@ -129,7 +217,6 @@ const Wallet = () => {
                                 }
                             </>
                         }
-
                     </tbody>
                 </table>
             </div>

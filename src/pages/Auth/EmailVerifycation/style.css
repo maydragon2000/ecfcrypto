@@ -1,0 +1,102 @@
+.email_verification {
+    background: white;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0px;
+}
+
+.email_verification .logo {
+    position: absolute;
+    top: 50px;
+    right: 200px;
+}
+
+.email_verification .logo a {
+    width: 180px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #2B3144;
+}
+
+.email_verification .logo a img {
+    width: 60px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.email_verification .logo a p {
+    margin-bottom: 0px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.email_verification-inner {
+    width: 562px;
+    margin-top: 100px;
+}
+
+.email_verification-inner h1 {
+    font-size: 39px;
+    color: #2B3144;
+    margin-bottom: 200px;
+    text-align: center;
+}
+
+.email_verification-inner .img_wrap{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 150px;
+}
+
+.email_verification-inner .img_wrap svg{
+    width: 88px;
+    height: 68px;
+    color: #2b65e8;
+}
+
+.email_verification-inner p{
+    text-align: center;
+    font-size: 20px;
+}
+
+.email_verification-inner .resend{
+    color: #2b65e8;
+    cursor: pointer;
+}
+
+@media (max-width:1200px) {
+    .email_verification-inner {
+        width: 100%;
+        padding-top: 70px;
+        margin-top: 0px;
+    }
+}
+
+@media (max-width:500px) {
+    .email_verification {
+        padding: 50px 20px;
+    }
+
+    .email_verification-inner h1 {
+        font-size: 23px;
+        text-align: center;
+        margin-bottom: 100px;
+    }
+
+    .email_verification .logo {
+        right: 20px;
+    }
+    
+    .email_verification-inner .img_wrap{
+        margin-bottom: 100px;
+    }
+    .email_verification-inner p{
+        font-size: 16px;
+    }
+}
+

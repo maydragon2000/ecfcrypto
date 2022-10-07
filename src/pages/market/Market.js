@@ -3,20 +3,18 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Carousel from 'react-multi-carousel';
 import { RiArrowRightSLine } from "react-icons/ri"
 import SingleCoin from "../../component/singlecoin/SingleCoin";
 import MarketTable from "../../component/MarketTable/MarketTable";
 import SearchDropdown from "../../component/searchDropdown/SearchDropdown";
-import { attemptGetTokenList } from "../../store/thunks/watchlist";
 
+import 'react-multi-carousel/lib/styles.css';
 import "./style.css";
 const Market = () => {
 
-    const { isAuth, user } = useSelector((state) => state.user);
-    const { tokenlist } = useSelector(state => state.watchlist);
-    const [rightMarketData, setRightMarketData] = useState();
+    const { isAuth, user, styleMode } = useSelector((state) => state.user);
     const [marketData, setMarketData] = useState();
-    const [watchlistData, setWatchlistData] = useState();
     const [topMarketData, setTopMarketData] = useState();
     const platformList = [
         { value: "1", label: "Ethereum Ecosystem" },
@@ -46,7 +44,24 @@ const Market = () => {
     const [platformValue, setPlatformValue] = useState(undefined);
     const [industryValue, setIndustryValue] = useState(undefined);
     const [isOtherOpen, setIsOtherOpen] = useState(false);
-    const [trendingSelect, setTrendingSelect] = useState("getgainers");
+    const [marketDataCount, setMarketDataCount] = useState(20);
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 1500, min: 1024 },
+            items: 3,
+            partialVisibilityGutter: 40
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            partialVisibilityGutter: 40
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            partialVisibilityGutter: 40
+        }
+    };
 
     const dispatch = useDispatch();
     const clearFilter = () => {
@@ -56,7 +71,7 @@ const Market = () => {
         setIndustryValue(undefined);
     }
     const getMainMarketData = () => {
-        axios.get(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/getcoins`)
+        axios.post(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/getcoins`, { marketDataCount })
             .then((res) => {
                 setMarketData(res.data);
             })
@@ -73,67 +88,39 @@ const Market = () => {
                 console.log(res, "res error");
             })
     }
-    const getTrendingData = () => {
-        axios.get(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/${trendingSelect}`)
-            .then((res) => {
-                setRightMarketData(res.data.data);
-            })
-            .catch((res) => {
-                console.log(res, "res error");
-            });
-    }
-    const getWatchlistData = () => {
-        axios.post(`${process.env.REACT_APP_SERVER_HOST}/api/cryptocurrency/watchlistCoin`, { tokenlist: tokenlist })
-            .then((res) => {
-                setWatchlistData(Object.values(res.data.data));
-            })
-            .catch((res) => {
-                console.log(res, "res error");
-            })
-    }
+
     useEffect(() => {
         getMainMarketData();
         if (!isAuth) {
             getMainCoin();
         };
-        if (isAuth)
-            dispatch(attemptGetTokenList(user.name))
-                .then((res) => {
-                    console.log("success");
-                })
         const interval = setInterval(() => {
             getMainMarketData();
-            if (isAuth)
-                getTrendingData();
             if (!isAuth) {
                 getMainCoin();
             };
-        }, 60000);
+        }, 6000000);
         return () => clearInterval(interval);
     }, [])
+
     useEffect(() => {
-        if (isAuth)
-            getTrendingData();
-    }, [trendingSelect]);
-    useEffect(() => {
-        if (!!tokenlist && isAuth) {
-            getWatchlistData();
-            const interval = setInterval(() => {
-                getWatchlistData();
-            }, 60000);
-            return () => clearInterval(interval);
-        }
-    }, [tokenlist]);
+        getMainMarketData();
+    }, [marketDataCount])
+
+    const selectChange = (e) => {
+        setMarketDataCount(e.target.value);
+    }
+
     return (
         <>
-            <div className="market">
+            <div className={`market light_market`}>
                 <div className="prices-by-marketcap" style={{ display: isAuth ? "none" : "block" }}>
                     <div className="row filter">
                         <div className="col-6 left">
                             <h1>Cryptocurrency Prices by Market Cap</h1>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+                            <p>The global crypto market cap is $940.86B.</p>
                         </div>
-                        <div className="col-6 right">
+                        {/* <div className="col-6 right">
                             <img alt="" src="image/filter.svg" />
                             <DropdownButton id="dropdown-item-button" title="Filter">
                                 <Dropdown.ItemText>Dropdown item text</Dropdown.ItemText>
@@ -143,30 +130,44 @@ const Market = () => {
                             </DropdownButton>
                             <img alt="" src="image/calendar.svg" />
                             <input type="date" placeholder="today" />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="topcoin-wrap">
-                        {!topMarketData ? <div>Loading...</div> : <>
-                            {topMarketData.slice(0, 4).map((item, index) =>
-                                <SingleCoin coinName={item.name} coinId={item.id} logogram={item.symbol} price={item.quote.USD.price.toFixed(2)} percent={item.quote.USD.percent_change_7d.toFixed(2)} />
-                            )}</>
+                        {!topMarketData ? <div>Loading...</div> :
+                            <>
+                                {topMarketData.slice(0, 4).map((item, index) =>
+                                    <SingleCoin coinName={item.name} coinId={item.id} logogram={item.symbol} price={item.quote.USD.price.toFixed(2)} percent={item.quote.USD.percent_change_7d.toFixed(2)} />
+                                )}
+                            </>
+                        }
+                    </div>
+                    <div className=" topcoin_wrap_mobile">
+                        {!topMarketData ? <div>Loading...</div> :
+                            <>
+                                <Carousel partialVisible={true} autoPlay={false} autoPlaySpeed={3000} responsive={responsive}>
+                                    {topMarketData.map((item, index) =>
+                                        <SingleCoin coinName={item.name} coinId={item.id} logogram={item.symbol} price={item.quote.USD.price.toFixed(2)} percent={item.quote.USD.percent_change_7d.toFixed(2)} />
+                                    )}
+                                </Carousel>
+                            </>
                         }
                     </div>
                 </div>
                 <div className="d-flex" style={{ width: "100%", justifyContent: "space-between" }}>
-                    <div className="market-unlogin" style={{ width: isAuth ? "70%" : "100%" }}>
+                    {/* <div className="market-unlogin" style={{ width: isAuth ? "70%" : "100%" }}> */}
+                    <div className="market-unlogin">
                         <div className="filter-bar row">
                             {
                                 isAuth ? <div className="col-6 left">
                                     <h5>Market Coins</h5>
-                                    <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                                    <p>The global crypto market cap is $940.86B.</p>
                                 </div> :
                                     <div className="col-6 left">
-                                        <button>Top Gainers</button>
+                                        {/* <button>Top Gainers</button>
                                         <button>Top Loser</button>
                                         <button>New in market</button>
                                         <button>Top in trading</button>
-                                        <button>Top in Volume</button>
+                                        <button>Top in Volume</button> */}
                                     </div>
                             }
 
@@ -193,41 +194,24 @@ const Market = () => {
                                 </div>
                             }
                             <div className="right col-6">
-                                <select >
+                                <select onChange={selectChange} value={marketDataCount}>
                                     <option value="5">Show 5</option>
                                     <option value="10">Show 10</option>
-                                    <option value="20">Show 20</option>
+                                    <option value="20" selected>Show 20</option>
                                     <option value="30">Show 30</option>
                                     <option value="40">Show 40</option>
                                     <option value="50">Show 50</option>
                                 </select>
-                                <Link to=""><img className="icon-filter" alt="" src="image/icon-filter.svg" /></Link>
-                                <Link to=""><img className="clear-filter" alt="" src="image/clear-filter.svg" /></Link>
-                                <Link to=""><img className="customize" alt="" src="image/customize.svg" /> Customize</Link>
+                                {/* <Link to=""><img className="icon-filter" alt="" src="image/icon-filter.svg" /></Link> */}
+                                {/* <Link to=""><img className="clear-filter" alt="" src="image/clear-filter.svg" /></Link> */}
+                                {/* <Link to=""><img className="customize" alt="" src="image/customize.svg" /> Customize</Link> */}
                                 <Link onClick={clearFilter} to=""><img className="close" alt="" src="image/close.svg" /> Clear Filter</Link>
                             </div>
                         </div>
                         <MarketTable marketData={marketData} smallType={false} />
                     </div>
-                    <div className="right-side" style={{ display: isAuth ? "" : "none" }}>
-                        <div className="right-side-coin-market">
-                            <div className="header">
-                                <Link to="" onClick={() => setTrendingSelect("getgainers")}>Top Gainers</Link>
-                                <Link to="" onClick={() => setTrendingSelect("getlosers")}>Top Loser</Link>
-                                <Link to="" onClick={() => setTrendingSelect("getnewmarket")}>New in Market</Link>
-                            </div>
-                            <MarketTable smallType={true} marketData={rightMarketData} />
-                        </div>
-                        <div className="right-watchlist-market">
-                            <div className="header">
-                                <p>Watchlist</p>
-                                <Link to=""><RiArrowRightSLine /></Link>
-                            </div>
-                            <MarketTable smallType={true} marketData={watchlistData} />
-                        </div>
-                    </div>
-                </div>
 
+                </div>
             </div>
         </>
     )

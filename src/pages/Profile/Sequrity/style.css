@@ -87,3 +87,33 @@
     color: red;
     margin-left: -20px;
 }
+
+@media (max-width:500px) {
+    .security-profile .password-change-inner-wrap {
+        flex-direction: column;
+    }
+
+    .security-profile .new-password,
+    .security-profile .reenter-password {
+        width: 100%;
+    }
+
+    .security-profile-footer {
+        flex-direction: column;
+    }
+}
+
+@media (max-width:350px) {
+    .profile-setting h3 {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .security-profile p {
+        font-size: 12px;
+    }
+
+    .security-profile-footer button {
+        width: 100%;
+    }
+}

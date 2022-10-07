@@ -13,3 +13,30 @@
     border-radius: 10px;
     padding: 40px;
 }
+
+/* light mode */
+
+.light_personal {
+    background-color: #E6E9F1;
+}
+
+.light_personal .personal-right {
+    background-color: white;
+}
+
+@media (max-width:1100px) {
+    .part_personal {
+        width: calc(100% - 84px);
+    }
+
+    .full_personal {
+        width: 100%;
+        opacity: 0.5;
+    }
+}
+
+@media (max-width:500px) {
+    .personal-right {
+        padding: 40px 20px;
+    }
+}

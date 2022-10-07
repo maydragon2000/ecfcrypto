@@ -46,8 +46,6 @@
 .coin-selection-wrap .selectinput {
     margin-left: -200px;
     z-index: 2;
-    background-color: #080808;
-    color: white;
 }
 
 .coin-selection-wrap .selectinput img {
@@ -55,3 +53,16 @@
     margin-right: 15px;
     border-radius: 100px;
 }
+
+@media (max-width: 500px) {
+    .coin-selection-wrap .selectinput{
+        margin-left: 0px;
+    }
+    .coin-selection-wrap .css-rp2qyt-control{
+        min-width:0px
+    }
+    .coin-selection-wrap .css-1ycljee-control{
+        min-width: 0px;
+    }
+}
+

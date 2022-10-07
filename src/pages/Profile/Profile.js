@@ -14,9 +14,9 @@ const Profile = () => {
     const [disable, setDisable] = useState(true);
     const [edit, setEdit] = useState(false);
     const inputReference = useRef(null);
-    const [firstName, setFirstName] = useState(user.firstName);
-    const [lastName, setLastName] = useState(user.lastName);
-    const [displayName, setDisplayName] = useState(user.displayName);
+    const [fullName, setFullName] = useState(user.fullName);
+    const [city, setCity] = useState(user.city);
+    const [country, setCountry] = useState(user.country);
     const [userName, setUserName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
     const [phoneValue, setPhoneValue] = useState(user.phoneNumber);
@@ -32,9 +32,9 @@ const Profile = () => {
     }, [edit]);
     const sendUpdateUser = {
         userName: userName,
-        firstName: firstName,
-        lastName: lastName,
-        displayName: displayName,
+        fullName: fullName,
+        city: city,
+        country: country,
         email: email,
         phoneNumber: phoneValue,
     }
@@ -48,14 +48,12 @@ const Profile = () => {
             if (res === true) {
                 success();
                 setEdit(false)
-
             }
             setDisable(false)
         }).catch((response) => {
             setDisable(false);
         })
     }
-
     return (
         <>
             <div className="profile">
@@ -69,30 +67,30 @@ const Profile = () => {
                 <div className="personal-information-wrap">
                     <div className="personal-information-wrap-column">
                         <div className="information-item">
-                            <label>First Name</label>
+                            <label>Full Name</label>
                             <div className="input-wrap">
-                                <input ref={inputReference} disabled={!edit} type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
-                            </div>
-                        </div>
-                        <div className="information-item">
-                            <label>Last Name</label>
-                            <div className="input-wrap">
-                                <input disabled={!edit} type="text" onChange={(e) => setLastName(e.target.value)} value={lastName} />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="personal-information-wrap-column">
-                        <div className="information-item">
-                            <label>Display Name</label>
-                            <div className="input-wrap">
-                                <input disabled={!edit} type="text" onChange={(e) => setDisplayName(e.target.value)} value={displayName} />
-                                <BiEditAlt />
+                                <input ref={inputReference} disabled={!edit} type="text" onChange={(e) => setFullName(e.target.value)} value={fullName} />
                             </div>
                         </div>
                         <div className="information-item">
                             <label>User Name</label>
                             <div className="input-wrap">
                                 <input disabled={true} type="text" onChange={(e) => setUserName(e.target.value)} value={userName} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="personal-information-wrap-column">
+                        <div className="information-item">
+                            <label>Country</label>
+                            <div className="input-wrap">
+                                <input disabled={!edit} type="text" onChange={(e) => setCountry(e.target.value)} value={country} />
+                                <BiEditAlt />
+                            </div>
+                        </div>
+                        <div className="information-item">
+                            <label>City</label>
+                            <div className="input-wrap">
+                                <input disabled={!edit} type="text" onChange={(e) => setCity(e.target.value)} value={city} />
                             </div>
                         </div>
                     </div>
