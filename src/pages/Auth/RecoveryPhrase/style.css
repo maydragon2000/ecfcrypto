@@ -149,9 +149,15 @@
     background-color: #E2F2FF;
 }
 
+.light_recovery-phrase .recovery-phrase-inner .phrase-list div:hover p{
+    color: #5367FF;
+}
+
 .light_recovery-phrase .recovery-phrase-inner .phrase-list div p{
     color: #2B3144;
 }
+
+
 
 .light_recovery-phrase .logo a p{
     color: #2B3144;

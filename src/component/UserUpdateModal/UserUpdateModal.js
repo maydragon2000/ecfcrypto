@@ -13,13 +13,15 @@ const UserUpdateModal = ({showModal, setShowModal, user, success, error, getUser
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [btcAddress, SetBtcAddress] = useState("");
-    const [ethAddress, SetEthAddress] = useState("")
+    const [ethAddress, SetEthAddress] = useState("");
+    const [email, setEmail] = useState("");
 
     useEffect(() => {
         setUserName(user.name);
         setPhoneNumber(user.phoneNumber);
         SetBtcAddress(user.btcAddress);
         SetEthAddress(user.ethAddress);
+        setEmail(user.email);
         if(user.permission === "0")
             setIdCheckStatus("Waiting");
         else if(user.permission === "1")
@@ -35,11 +37,12 @@ const UserUpdateModal = ({showModal, setShowModal, user, success, error, getUser
         const data = {
             userName:user.name,
             phoneNumber: phoneNumber,
-            password: password
+            password: password,
+            email:email
         }
         adminUpdateUser(data)
         .then((res) => {
-            setPassword("")
+            setPassword("");
             success();
             setSelectedIndex(0);
             getUsers();
@@ -108,6 +111,14 @@ const UserUpdateModal = ({showModal, setShowModal, user, success, error, getUser
                             </div>
                         </div>
                         <div className="information_item">
+                            <label>Email</label>
+                            <div className="input_wrap">
+                                <input type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="personal_information_wrap_column">
+                        <div className="information_item information_item_password">
                             <label>New Password</label>
                             <div className="input_wrap">
                                 <input type="text" onChange={(e) => setPassword(e.target.value)} value={password} />

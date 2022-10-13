@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setResponseStatus } from "../../../store/actions/user";
 import { saveRegisterData } from "../../../store/actions/auth";
 import { ToastContainer, toast } from 'react-toastify';
+import { postUserName } from "../../../api";
 import 'react-toastify/dist/ReactToastify.css';
 import "./style.css"
 const Register = (props) => {
@@ -26,7 +27,7 @@ const Register = (props) => {
         password: "",
     };
     const validationSchema = Yup.object({
-        userName: Yup.string().required("userName is Required"),
+        userName: Yup.string().trim().required("userName is Required"),
         email: Yup.string().email("Invalid email address").required("Required"),
         password: Yup.string().min(5).max(255).required("Password is Required"),
         passwordConfirm: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').min(5).max(255).required("Coinfirm Password is Required")
@@ -44,9 +45,23 @@ const Register = (props) => {
         }
     }, [])
     const onSubmit = (values) => {
-        dispatch(saveRegisterData(values));
-        localStorage.setItem("registerData", JSON.stringify(values))
-        navigate("/EmailVerifycation");
+        postUserName({userName:values.userName})
+        .then((response) => {
+            if(response.status === 200){
+                dispatch(saveRegisterData(values));
+                localStorage.setItem("registerData", JSON.stringify(values))
+                navigate("/EmailVerifycation");
+            } 
+        })
+        .catch(({response}) => {
+            if(response.status === 401){
+                userNameExited();
+            } else{
+                ServerError();
+            }
+            console.log(response, "res checkusername");
+        })
+        
     };
 
     return (
@@ -98,7 +113,7 @@ const Register = (props) => {
                                         <Field
                                             name="passwordConfirm"
                                             type={passwordConfirmShow ? "text" : "password"}
-                                            placeholder="Confirm Passward"
+                                            placeholder="Confirm Password"
                                         />
                                         <a onClick={() => setPasswordConfirmWrap(!passwordConfirmShow)}><img alt="" src="image/password-show.svg" /></a>
                                         <ErrorMessage name="passwordConfirm" component={Error} />

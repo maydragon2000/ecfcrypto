@@ -1,6 +1,11 @@
 import axios from "axios";
 
 //auth api
+
+const postUserName = (data) => {
+    return axios.post(`${process.env.REACT_APP_SERVER_HOST}/api/users/checkusername`, data);
+}
+
 const postRegister = (user) => {
     const formData = new FormData();
     formData.append('address', user.address);
@@ -70,6 +75,7 @@ const adminUpdateUser = (data) => axios.post(`${process.env.REACT_APP_SERVER_HOS
 const deleteUser = (data) => axios.post(`${process.env.REACT_APP_SERVER_HOST}/api/users/delete`, data);
 
 export {
+    postUserName,
     postRegister,
     postLogin,
     postRecoveryPhrase,

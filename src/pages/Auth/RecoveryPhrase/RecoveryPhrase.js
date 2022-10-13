@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { attemptRegister } from "../../../store/thunks/auth";
@@ -10,17 +10,20 @@ import "./style.css";
 const RecoveryPhrase = () => {
     var { registerData, idFrontImage, idBackImage, realPhoto } = useSelector((state) => state.auth);
     console.log(registerData, idFrontImage, idBackImage, realPhoto, "result");
-    var phrase = [];
+    var [phrase, setPhrase] = useState([]) ;
     var randomNumber = 0;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [disable, setDisable] = useState(false);
-
-
-    for (let i = 0; i < 12; i++) {
-        randomNumber = Math.floor(Math.random() * 1001);
-        phrase.push(wordData.words[randomNumber]);
-    }
+    useEffect(() => {
+        const words = [];
+        for (let i = 0; i < 12; i++) {
+            randomNumber = Math.floor(Math.random() * 1001);
+            words.push(wordData.words[randomNumber]);
+            setPhrase(words);
+        }
+    },[]);
+    
     const onClickContinue = () => {
         setDisable(true);
         const finalRegisterData = { ...registerData, recoveryPhrase: phrase, idFrontImage, idBackImage, realPhoto };
@@ -30,7 +33,7 @@ const RecoveryPhrase = () => {
                 setDisable(false);
                 dispatch(setResponseStatus("success register"));
                 dispatch(attemptCreateWallet(res.data.name));
-                navigate("/Login");
+                // navigate("/Login");
             })
             .catch((error) => {
                 if (error.response) {
@@ -42,11 +45,13 @@ const RecoveryPhrase = () => {
                     }
                 }
                 setDisable(false);
-                navigate("/Register");
+                // navigate("/Register");
             });
+       
+    console.log(registerData, "registerData");
+
     }
 
-    console.log(registerData, "registerData");
 
     return (
         <>

@@ -8,54 +8,8 @@ import AddCoinModal from "../../../component/AddCoinModal/AddCoinModal";
 import { RiFileCopyLine } from "react-icons/ri";
 import { GoPlus } from "react-icons/go";
 import { setSendStatus } from "../../../store/actions/send";
-import transakSDK from "@transak/transak-sdk";
 import { ToastHeader } from "react-bootstrap";
 import "./style.css"
-
-const getWidth = () =>{
-    var width = window.innerWidth;
-    console.log(width, "width");
-    if (width >= 500){
-        return "500px";
-    } else {
-        console.log(" width here");
-        return "320px"
-    }
-}
-
-const settings = {
-    apiKey: '2e2c5f04-7720-46ad-b940-c59db3bcd535',  // Your API Key
-    environment: 'STAGING', // STAGING/PRODUCTION
-    defaultCryptoCurrency: 'ETH',
-    themeColor: '000000', // App theme color
-    hostURL: window.location.origin,
-    widgetHeight: "700px",
-    widgetWidth: getWidth(),
-}
-
-export function openTransak() {
-    const transak = new transakSDK(settings);
-
-    transak.init();
-
-    // To get all the events
-    transak.on(transak.ALL_EVENTS, (data) => {
-        console.log(data)
-    });
-
-    // This will trigger when the user closed the widget
-    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (eventData) => {
-        console.log(eventData);
-        transak.close();
-    });
-
-    // This will trigger when the user marks payment is made.
-    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-        console.log(orderData);
-        window.alert("Payment Success")
-        transak.close();
-    });
-}
 
 const Wallet = () => {
     const { walletAddress, walletData } = useSelector(state => state.wallet);
@@ -125,6 +79,7 @@ const Wallet = () => {
                 })
     }, []);
     const copySuccess = () => toast.success("Copy success");
+    const comingSoon = () => toast.info("Coming Soon...");
     const onClickClipboard = () => {
         setIsClipboard(true);
         copySuccess();
@@ -146,6 +101,10 @@ const Wallet = () => {
         }
     }, [modalShow]);
     console.log(walletData, "walletData");
+
+    const trading = () => {
+        comingSoon();
+    }
 
     const t = document.querySelector('#test')
     
@@ -176,12 +135,12 @@ const Wallet = () => {
                 </CopyToClipboard>
                 </div>
                 
+                
                 </>
                 :<></>
                 }
-                
                 <div className="wallet-button-wrap">
-                    <button className="buy_sell_button" onClick={() => openTransak()}>BUY/SELL</button>
+                    <button className="buy_sell_button" onClick={() => trading()}>BUY/SELL</button>
                     <button onClick={onOpenModal}><GoPlus />Add Coin</button>
                 </div>
                 <table>

@@ -5,6 +5,7 @@ import UserUpdateModal from "../../component/UserUpdateModal/UserUpdateModal";
 import ConfirmDeleteUser from "../../component/ConfirmDeleteUser/ConfirmDeleteUser";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import "./style.css"
 
@@ -118,6 +119,7 @@ const Admin = () => {
             <ToastContainer limit={3} autoClose={3000} hideProgressBar={true} theme="colored" />
             <div className="admin_inner">
                 <h1>Admin Panel</h1>
+                
                 <div className="tool_bar">
                     {/* <label>Id Check</label> */}
                     <div className="select_wrap">

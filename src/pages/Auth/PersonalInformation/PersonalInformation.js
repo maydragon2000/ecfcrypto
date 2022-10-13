@@ -54,15 +54,15 @@ const PersonalInformation = () => {
         navigate("/UploadIdFront");
     };
 
-    // useEffect(() => {
-    //     checkEmail({id})
-    //     .then((res) => {
-    //         console.log(res.status, "email check res");
-    //     })
-    //     .catch(() => {
-    //         navigate("/register");
-    //     })
-    // },[])
+    useEffect(() => {
+        checkEmail({id})
+        .then((res) => {
+            console.log(res.status, "email check res");
+        })
+        .catch(() => {
+            navigate("/register");
+        })
+    },[])
     return (
         <Formik
             initialValues={initialValues}

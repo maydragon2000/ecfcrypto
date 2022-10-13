@@ -67,3 +67,7 @@
     color: #5367FF;
     border: solid 1px #5367FF;
 }
+
+.user_update_modal .information_item_password{
+    width: 100%;
+}

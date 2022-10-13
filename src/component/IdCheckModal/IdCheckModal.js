@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useState, useCallback} from "react";
 import { Modal } from "react-bootstrap";
 import { setPermission } from "../../api";
+import Zoom from "react-medium-image-zoom";
+
+import 'react-medium-image-zoom/dist/styles.css'
 import "./style.css"
 
 const IdCheckModal = ({showModal, setShowModal, user, success, error, getUsers, setSelectedIndex}) => {
@@ -54,6 +57,22 @@ const IdCheckModal = ({showModal, setShowModal, user, success, error, getUsers, 
         });
     }
 
+    const [isRealPhotoZoomed, setIsRealPhotoZoomed] = useState(false);
+    const [isFrontZoomed, setIsFrontZoomed] = useState(false);
+    const [isBackZoomed, setIsBackZoomed] = useState(false);
+
+    const realPhotoZoomChange = useCallback(isRealPhotoZoomed => {
+        setIsRealPhotoZoomed(isRealPhotoZoomed)
+    }, [])
+
+    const frontChange = useCallback(isFrontZoomed => {
+        setIsFrontZoomed(isFrontZoomed)
+    }, [])
+
+    const backZoomChange = useCallback(isBackZoomed => {
+        setIsBackZoomed(isBackZoomed)
+    }, [])
+
     return(
             <Modal 
                 show={showModal}
@@ -65,20 +84,33 @@ const IdCheckModal = ({showModal, setShowModal, user, success, error, getUsers, 
                 </Modal.Header>
                 <Modal.Body className="modal_body">
                     <h3>Real Photo</h3>
+                    
                     <div className="real_photo_wrap">
                         <div className="real_photo_wrap_inner">
-                            <img src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.real_photo}`} />
+                            <Zoom >
+                                <img
+                                    src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.real_photo}`}
+                                />
+                            </Zoom>
                         </div>
                     </div>
                     <h3>Id Card</h3>
                     <div className="image_wrap">
                         <div className="image_wrap_inner">
                             <label>Front</label>
-                            <img src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_front_image}`} />
+                            <Zoom >
+                                <img 
+                                    src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_front_image}`}
+                                />
+                            </Zoom>
                         </div>
                         <div className="image_wrap_inner">
                             <label>Back</label>
-                            <img src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_back_image}`} />
+                            <Zoom>
+                                <img
+                                    src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_back_image}`} 
+                                 />
+                            </Zoom>
                         </div>
                     </div>
                     <h3>User's Info</h3>
