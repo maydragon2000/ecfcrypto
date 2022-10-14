@@ -7,6 +7,8 @@ import { logout, setStyleMode } from "../../store/actions/user";
 import { GiHamburgerMenu } from "react-icons/gi"
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import MobileNavModal from "../MobileNavModal/MobileNavModal";
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
+
 import "./style.css";
 const Header = (props) => {
     const { isAuth, user, styleMode } = useSelector((state) => state.user);
@@ -81,6 +83,9 @@ const Header = (props) => {
                     <button className="white_button" style={{ display: styleMode ? "none" : "flex" }} onClick={changeStyleToWhite}><BsFillSunFill /></button>
                 </div> */}
                 <MobileNavModal showMobileMenu={showMobileMenu} setShowMobileMenu={setShowMobileMenu} isAuth={isAuth} user={!user ? false : user} logOut={logOut} isAdmin={isAdmin} adminLogout={adminLogout} />
+                <TawkMessengerReact
+                    propertyId="6347d4c637898912e96e662e"
+                    widgetId="1gf89eccj"/>
             </div>
         </>
     )

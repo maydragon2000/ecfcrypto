@@ -512,6 +512,8 @@
     background-color: #F0F1F5;
 }
 
+
+
 @media (max-width:1100px) {
     .prices-by-marketcap .filter .left {
         width: 80%;

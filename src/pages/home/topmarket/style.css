@@ -130,10 +130,19 @@
     color: #2B3144;
 }
 
+.home .home-top-market .topcoin_wrap_mobile{
+    display: none;
+}
+
 @media (max-width:1100px) {
     .home-top-market .topcoin-wrap {
         display: none;
     }
+
+    .home .home-top-market .topcoin_wrap_mobile{
+        display: block;
+    }
+    
 
     .home-top-market .coin-wrap-animation {
         width: 80%;
