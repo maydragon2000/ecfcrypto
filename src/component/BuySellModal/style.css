@@ -1,0 +1,15 @@
+.buy_sell_modal iframe{
+    margin-top: 20px;
+    width: 100%;
+    height: 430px;
+}
+
+.buy_sell_modal .modal-content{
+    border-radius: 24px;
+}
+
+@media (max-width:350px){
+    .buy_sell_modal .modal_body{
+        padding: 1rem 0px;
+    }
+}

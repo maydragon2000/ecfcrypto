@@ -85,24 +85,19 @@ const PersonalInformation = () => {
                                 <Field
                                     name="fullName"
                                     type="text"
-                                    placeholder="fullname"
+                                    placeholder="Full Name"
                                 />
                                 <ErrorMessage name="fullName" component={Error} />
                             </div>
                             <div className="birthday_wrap">
                                 <Field
                                     name="birthday"
-                                    type="date"
+                                    type="text"
                                     placeholder="Date of birth"
                                 />
                                 <ErrorMessage name="birthday" component={Error} />
                             </div>
                             <div className="country_wrap">
-                                {/* <Field
-                                    name="country"
-                                    type="text"
-                                    placeholder="Country"
-                                /> */}
                                 <CountryDropdown
                                 value={country}
                                 name="country"
@@ -110,11 +105,6 @@ const PersonalInformation = () => {
                                 <ErrorMessage name="country" component={Error} />
                             </div>
                             <div className="state_wrap">
-                                {/* <Field
-                                    name="state"
-                                    type="text"
-                                    placeholder="State"
-                                /> */}
                                 <RegionDropdown
                                 name="state"
                                 country={country}
@@ -126,7 +116,7 @@ const PersonalInformation = () => {
                                 <Field
                                     name="address"
                                     type="text"
-                                    placeholder="Residential address"
+                                    placeholder="Residential Address"
                                 />
                                 <ErrorMessage name="address" component={Error} />
                             </div>
@@ -142,7 +132,7 @@ const PersonalInformation = () => {
                                 <Field
                                     name="zipCode"
                                     type="text"
-                                    placeholder="Zip code"
+                                    placeholder="Zip Code"
                                 />
                                 <ErrorMessage name="zipCode" component={Error} />
                             </div>

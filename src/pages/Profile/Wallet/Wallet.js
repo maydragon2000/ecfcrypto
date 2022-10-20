@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { attemptGetWalletData, attemptSendWalletTokenList } from "../../../store/thunks/wallet"
 import AddCoinModal from "../../../component/AddCoinModal/AddCoinModal";
+import BuySellModal from "../../../component/BuySellModal/BuySellModal";
 import { RiFileCopyLine } from "react-icons/ri";
 import { GoPlus } from "react-icons/go";
 import { setSendStatus } from "../../../store/actions/send";
@@ -14,47 +15,11 @@ import "./style.css"
 const Wallet = () => {
     const { walletAddress, walletData } = useSelector(state => state.wallet);
     const { isAuth, user, styleMode } = useSelector(state => state.user);
-    const walletBalance = [
-        {
-            coinName: "Bitcoin",
-            available: 1,
-            id: 1,
-            usdValuatioin: 25754.70,
-            coinLogogram: "BTC"
-        },
-        {
-            coinName: "Ethereum",
-            available: 1027,
-            id: 1027,
-            usdValuatioin: 1547740.35,
-            coinLogogram: "ETH"
-        },
-        {
-            coinName: "Binance",
-            available: 1839,
-            id: 1839,
-            usdValuatioin: 441893.31,
-            coinLogogram: "BNB"
-        },
-        {
-            coinName: "Tether",
-            available: 825,
-            id: 825,
-            usdValuatioin: 825,
-            coinLogogram: "USDT"
-        },
-        {
-            coinName: "XRP",
-            available: 52,
-            id: 52,
-            usdValuatioin: 19.76,
-            coinLogogram: "XRP"
-        },
-    ]
     const [selectedValue, setSelectedValue] = useState(undefined);
     const [isCopyClipboard, setIsClipboard] = useState(false);
     const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false);
+    const [buyModalShow, setBuyModalShow] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -102,8 +67,12 @@ const Wallet = () => {
     }, [modalShow]);
     console.log(walletData, "walletData");
 
-    const trading = () => {
-        comingSoon();
+    const opneBuyModal = () => {
+        setBuyModalShow(true);
+    }
+
+    const closeBuyModal = () => {
+        setBuyModalShow(false);
     }
 
     const t = document.querySelector('#test')
@@ -139,8 +108,9 @@ const Wallet = () => {
                 </>
                 :<></>
                 }
+                
                 <div className="wallet-button-wrap">
-                    <button className="buy_sell_button" onClick={() => trading()}>BUY/SELL</button>
+                    <button className="buy_sell_button" onClick={() => opneBuyModal()}>BUY/SELL</button>
                     <button onClick={onOpenModal}><GoPlus />Add Coin</button>
                 </div>
                 <table>
@@ -180,6 +150,7 @@ const Wallet = () => {
                 </table>
             </div>
             <AddCoinModal selectedValue={selectedValue} setSelectedValue={setSelectedValue} modalShow={modalShow} onCloseModal={onCloseModal} />
+            <BuySellModal showModal={buyModalShow} onCloseModal={closeBuyModal}  />
         </>
     )
 }

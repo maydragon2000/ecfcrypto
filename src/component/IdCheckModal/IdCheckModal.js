@@ -1,7 +1,7 @@
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useEffect} from "react";
 import { Modal } from "react-bootstrap";
 import { setPermission } from "../../api";
-import Zoom from "react-medium-image-zoom";
+import ImageZoom from "react-medium-image-zoom";
 
 import 'react-medium-image-zoom/dist/styles.css'
 import "./style.css"
@@ -11,7 +11,6 @@ const IdCheckModal = ({showModal, setShowModal, user, success, error, getUsers, 
     const onCloseModal = () => {
         setShowModal(false);
     }
-    console.log(user, "idcheck user");
 
     const allow = () => {
         const data = {
@@ -57,22 +56,27 @@ const IdCheckModal = ({showModal, setShowModal, user, success, error, getUsers, 
         });
     }
 
-    const [isRealPhotoZoomed, setIsRealPhotoZoomed] = useState(false);
-    const [isFrontZoomed, setIsFrontZoomed] = useState(false);
-    const [isBackZoomed, setIsBackZoomed] = useState(false);
+    const onZoom = () => {
+        const background = document.getElementsByClassName("modal-backdrop");
+        for(let i = 0; i < background.length; i++){
+            background[i].style.zIndex = "90";
+        }
+        const modal = document.getElementsByClassName("id_check_modal");
+        for(let i = 0; i < modal.length; i++){
+            modal[i].style.zIndex = "100";
+        }
+    }
 
-    const realPhotoZoomChange = useCallback(isRealPhotoZoomed => {
-        setIsRealPhotoZoomed(isRealPhotoZoomed)
-    }, [])
-
-    const frontChange = useCallback(isFrontZoomed => {
-        setIsFrontZoomed(isFrontZoomed)
-    }, [])
-
-    const backZoomChange = useCallback(isBackZoomed => {
-        setIsBackZoomed(isBackZoomed)
-    }, [])
-
+    const onUnzoom = () => {
+        const background = document.getElementsByClassName("modal-backdrop");
+        for(let i = 0; i < background.length; i++){
+            background[i].style.zIndex = "1050";
+        }
+        const modal = document.getElementsByClassName("id_check_modal");
+        for(let i = 0; i < modal.length; i++){
+            modal[i].style.zIndex = "1055";
+        }
+    }
     return(
             <Modal 
                 show={showModal}
@@ -87,30 +91,51 @@ const IdCheckModal = ({showModal, setShowModal, user, success, error, getUsers, 
                     
                     <div className="real_photo_wrap">
                         <div className="real_photo_wrap_inner">
-                            <Zoom >
-                                <img
-                                    src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.real_photo}`}
-                                />
-                            </Zoom>
+                            <ImageZoom 
+                                image={{
+                                    src:`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.real_photo}`,
+                                    class:"img"
+                                }}
+                                zoomImage={{
+                                    src:`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.real_photo}`,
+                                    class:"img--zoomed"
+                                }}
+                                onZoom={onZoom}
+                                onUnzoom={onUnzoom}
+                            />
                         </div>
                     </div>
                     <h3>Id Card</h3>
                     <div className="image_wrap">
                         <div className="image_wrap_inner">
                             <label>Front</label>
-                            <Zoom >
-                                <img 
-                                    src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_front_image}`}
-                                />
-                            </Zoom>
+                            <ImageZoom 
+                                image={{
+                                    src:`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_front_image}`,
+                                    class:"img"
+                                }}
+                                zoomImage={{
+                                    src:`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_front_image}`,
+                                    class:"img--zoomed"
+                                }}
+                                onZoom={onZoom}
+                                onUnzoom={onUnzoom}
+                            />
                         </div>
                         <div className="image_wrap_inner">
                             <label>Back</label>
-                            <Zoom>
-                                <img
-                                    src={`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_back_image}`} 
-                                 />
-                            </Zoom>
+                            <ImageZoom 
+                                image={{
+                                    src:`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_back_image}`,
+                                    class:"img"
+                                }}
+                                zoomImage={{
+                                    src:`${process.env.REACT_APP_SERVER_IMAGE_URL}${user.id_back_image}`,
+                                    class:"img--zoomed"
+                                }}
+                                onZoom={onZoom}
+                                onUnzoom={onUnzoom}
+                            />
                         </div>
                     </div>
                     <h3>User's Info</h3>
