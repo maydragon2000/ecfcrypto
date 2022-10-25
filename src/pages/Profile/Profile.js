@@ -102,7 +102,7 @@ const Profile = () => {
                         <div className="information-item">
                             <label>Email</label>
                             <div className="input-wrap">
-                                <input disabled={!edit} value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
+                                <input disabled={true} value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
                                 <MdOutlineEmail />
                             </div>
                         </div>
