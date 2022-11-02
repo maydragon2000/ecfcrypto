@@ -21,6 +21,10 @@ const Profile = () => {
     const [email, setEmail] = useState(user.email);
     const [phoneValue, setPhoneValue] = useState(user.phoneNumber);
     const success = () => toast.success("Success Update");
+    const emailRequire = () => toast.warning("You can't set empty on email fielld.");
+    const fullNameRequire = () => toast.warning("You can't set empty on FullName fielld.");
+    const countryRequire = () => toast.warning("You can't set empty on Country fielld.");
+    const cityRequire = () => toast.warning("You can't set empty on City fielld.");
     const dispatch = useDispatch();
     const editInformation = () => {
         setEdit(true);
@@ -43,16 +47,26 @@ const Profile = () => {
         setDisable(true);
     }
     const saveChange = () => {
-        setDisable(true);
-        dispatch(attemptResetUser(sendUpdateUser)).then((res) => {
-            if (res === true) {
-                success();
-                setEdit(false)
-            }
-            setDisable(false)
-        }).catch((response) => {
-            setDisable(false);
-        })
+        if(!sendUpdateUser.email){
+            emailRequire();
+        } else if(!sendUpdateUser.fullName){
+            fullNameRequire();
+        } else if(!sendUpdateUser.country){
+            countryRequire();
+        } else if(!sendUpdateUser.city){
+            cityRequire();
+        } else {
+            setDisable(true);
+            dispatch(attemptResetUser(sendUpdateUser)).then((res) => {
+                if (res === true) {
+                    success();
+                    setEdit(false)
+                }
+                setDisable(false)
+            }).catch((response) => {
+                setDisable(false);
+            })
+        }
     }
     return (
         <>
@@ -102,7 +116,7 @@ const Profile = () => {
                         <div className="information-item">
                             <label>Email</label>
                             <div className="input-wrap">
-                                <input disabled={true} value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
+                                <input disabled={disable} value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
                                 <MdOutlineEmail />
                             </div>
                         </div>
