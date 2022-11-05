@@ -25,6 +25,7 @@ const Profile = () => {
     const fullNameRequire = () => toast.warning("You can't set empty on FullName fielld.");
     const countryRequire = () => toast.warning("You can't set empty on Country fielld.");
     const cityRequire = () => toast.warning("You can't set empty on City fielld.");
+    const emailValidationError = () => toast.warning('You set Invalid email address.');
     const dispatch = useDispatch();
     const editInformation = () => {
         setEdit(true);
@@ -47,8 +48,8 @@ const Profile = () => {
         setDisable(true);
     }
     const saveChange = () => {
-        if(!sendUpdateUser.email){
-            emailRequire();
+        if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(sendUpdateUser.email))){
+            emailValidationError();
         } else if(!sendUpdateUser.fullName){
             fullNameRequire();
         } else if(!sendUpdateUser.country){
