@@ -10,6 +10,7 @@ const postRegister = (user) => {
     const formData = new FormData();
     formData.append('address', user.address);
     formData.append('birthday', user.birthday);
+    formData.append('nationality', user.nationality);
     formData.append('city', user.city);
     formData.append('country', user.country);
     formData.append('email', user.email);

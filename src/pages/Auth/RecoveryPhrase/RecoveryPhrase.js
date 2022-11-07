@@ -33,7 +33,7 @@ const RecoveryPhrase = () => {
                 setDisable(false);
                 dispatch(setResponseStatus("success register"));
                 dispatch(attemptCreateWallet(res.data.name));
-                // navigate("/Login");
+                navigate("/Login");
             })
             .catch((error) => {
                 if (error.response) {
@@ -45,7 +45,7 @@ const RecoveryPhrase = () => {
                     }
                 }
                 setDisable(false);
-                // navigate("/Register");
+                navigate("/Register");
             });
        
     console.log(registerData, "registerData");

@@ -26,6 +26,7 @@ const PersonalInformation = () => {
         address: "",
         city: "",
         zipCode: "",
+        nationality:"",
     };
 
     const validationSchema = Yup.object({
@@ -34,6 +35,7 @@ const PersonalInformation = () => {
         address: Yup.string().required("Address is Required"),
         city: Yup.string().required("City is Required"),
         zipCode: Yup.string().required("ZipCode is Required"),
+        nationality: Yup.string().required("Nationality is Required"),
     });
 
     const [country, setCountry] = useState("United Arab Emirates");
@@ -96,6 +98,14 @@ const PersonalInformation = () => {
                                     placeholder="Date of birth"
                                 />
                                 <ErrorMessage name="birthday" component={Error} />
+                            </div>
+                            <div className="birthday_wrap">
+                                <Field
+                                    name="nationality"
+                                    type="text"
+                                    placeholder="Nationality"
+                                />
+                                <ErrorMessage name="nationality" component={Error} />
                             </div>
                             <div className="country_wrap">
                                 <CountryDropdown

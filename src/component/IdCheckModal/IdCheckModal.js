@@ -12,6 +12,7 @@ const IdCheckModal = ({showModal, setShowModal, user, success, error, getUsers, 
         setShowModal(false);
     }
 
+
     const allow = () => {
         const data = {
             userName:user.name,
@@ -146,8 +147,8 @@ const IdCheckModal = ({showModal, setShowModal, user, success, error, getUsers, 
                                 <p>{user.full_name}</p>
                             </div>
                             <div className="single_info_wrap">
-                                <label>Email :</label>
-                                <p>{user.email}</p>
+                                <label>Nationality :</label>
+                                <p>{user.nationality}</p>
                             </div>
                         </div>
                         <div className="person_info_inner">
