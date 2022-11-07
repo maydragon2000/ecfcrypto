@@ -33,6 +33,7 @@ const Register = (props) => {
         passwordConfirm: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').min(5).max(255).required("Coinfirm Password is Required")
     });
     const userNameExited = () => toast.error("Username is already exited. Please use another username.");
+    const emailExited = () => toast.error("Email is already exited. Please use another email.");
     const ServerError = () => toast.error("Server Connection Error. Please try again.");
     useEffect(() => {
         if (responseStatus === "userName already exited") {
@@ -45,7 +46,7 @@ const Register = (props) => {
         }
     }, [])
     const onSubmit = (values) => {
-        postUserName({userName:values.userName})
+        postUserName({userName:values.userName, email:values.email})
         .then((response) => {
             if(response.status === 200){
                 dispatch(saveRegisterData(values));
@@ -56,6 +57,8 @@ const Register = (props) => {
         .catch(({response}) => {
             if(response.status === 401){
                 userNameExited();
+            } else if(response.status === 403){
+                emailExited();
             } else{
                 ServerError();
             }
