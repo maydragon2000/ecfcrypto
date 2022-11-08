@@ -54,8 +54,11 @@ export const attemptResetUser = (user) => (dispatch) =>
       dispatch(setUser(decoded));
       localStorage.setItem("token", data.token);
       return true
-    }).catch(() => {
-      return false
+    }).catch(({response}) => {
+      console.log(response, "here");
+      if(response.status === 401)
+        return -1;
+      return -2;
     });
 export const attemptChangePassword = (data) => () => changePassword(data);
 export const attemptSendEmail = (data) => () => sendEmail(data);

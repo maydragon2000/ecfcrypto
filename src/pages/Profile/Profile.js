@@ -21,11 +21,12 @@ const Profile = () => {
     const [email, setEmail] = useState(user.email);
     const [phoneValue, setPhoneValue] = useState(user.phoneNumber);
     const success = () => toast.success("Success Update");
-    const emailRequire = () => toast.warning("You can't set empty on email fielld.");
+    const emailAlreadyExit = () => toast.error("This email already used from other. Please update with other email.");
     const fullNameRequire = () => toast.warning("You can't set empty on FullName fielld.");
     const countryRequire = () => toast.warning("You can't set empty on Country fielld.");
     const cityRequire = () => toast.warning("You can't set empty on City fielld.");
     const emailValidationError = () => toast.warning('You set Invalid email address.');
+    const serverError = () => toast.error("Server Error");
     const dispatch = useDispatch();
     const editInformation = () => {
         setEdit(true);
@@ -62,8 +63,12 @@ const Profile = () => {
                 if (res === true) {
                     success();
                     setEdit(false)
+                } else if(res === -1){
+                    emailAlreadyExit();
+                } else{
+                    serverError();
                 }
-                setDisable(false)
+                setDisable(false);
             }).catch((response) => {
                 setDisable(false);
             })
