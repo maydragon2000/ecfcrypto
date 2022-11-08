@@ -55,7 +55,6 @@ export const attemptResetUser = (user) => (dispatch) =>
       localStorage.setItem("token", data.token);
       return true
     }).catch(({response}) => {
-      console.log(response, "here");
       if(response.status === 401)
         return -1;
       return -2;
